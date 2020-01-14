@@ -35,6 +35,7 @@ public class BookCopiesDAO extends BaseDAO<BookCopies> implements ResultSetExtra
 		return (Integer) keyHolder.getKey();
 	}
 	
+	
 	public void updateBookCopies(BookCopies bc) throws ClassNotFoundException, SQLException
 	{
 		mySqlTemplate.update("UPDATE tbl_book_copies SET noOfCopies = ? WHERE bookId = ? && branchId = ?", new Object[] {bc.getNoOfCopies(), bc.getBookId(), bc.getBranchId()});
@@ -49,6 +50,10 @@ public class BookCopiesDAO extends BaseDAO<BookCopies> implements ResultSetExtra
 		return mySqlTemplate.query("SELECT * FROM tbl_book_copies", this);
 	}
 	
+	public List<BookCopies> readBookCopiesByBranch(int branchID) throws ClassNotFoundException, SQLException
+	{
+		return mySqlTemplate.query("SELECT * FROM tbl_book_copies WHERE branchId = ?", new Object[] {branchID}, this);
+	}
 	
 	@Override
 	public List<BookCopies> extractData(ResultSet rs) throws SQLException {	

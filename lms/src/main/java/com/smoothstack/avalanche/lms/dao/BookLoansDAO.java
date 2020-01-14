@@ -59,6 +59,10 @@ public class BookLoansDAO extends BaseDAO<BookLoans> implements ResultSetExtract
 		return mySqlTemplate.query("SELECT * FROM tbl_book_loans", this);
 	}
 	
+	public List<BookLoans> readBookLoansByCardNo(int cardNo) throws ClassNotFoundException, SQLException
+	{
+		return mySqlTemplate.query("SELECT * FROM tbl_book_loans WHERE cardNo = ?", new Object[] {cardNo}, this);
+	}
 	@Override
 	public List<BookLoans> extractData(ResultSet rs) throws SQLException {
 		List<BookLoans> bls = new ArrayList<BookLoans>();

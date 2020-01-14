@@ -1,14 +1,15 @@
-package com.smoothstack.avalanche.lmsspringboot.svc;
+package com.smoothstack.avalanche.lms.svc;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.smoothstack.avalanche.lmsspringboot.dao.*;
-import com.smoothstack.avalanche.lmsspringboot.entity.*;
+import com.smoothstack.avalanche.lms.dao.BookCopiesDAO;
+import com.smoothstack.avalanche.lms.dao.BranchDAO;
+import com.smoothstack.avalanche.lms.entity.BookCopies;
+import com.smoothstack.avalanche.lms.entity.Branch;
 
 @Service
 public class LibrarianSVC {
@@ -34,11 +35,11 @@ public class LibrarianSVC {
 	 * Book Copies Functions
 	 */
 	
-	public List<Copies> readBookCopiesByBranch() throws ClassNotFoundException, SQLException {
-		return copiesDAO.readBookCopiesByBranch();
+	public List<BookCopies> readBookCopiesByBranch(int branchID) throws ClassNotFoundException, SQLException {
+		return copiesDAO.readBookCopiesByBranch(branchID);
 	}
 	
-    public void updateBookCopies(Copies copies) throws ClassNotFoundException, SQLException {
+    public void updateBookCopies(BookCopies copies) throws ClassNotFoundException, SQLException {
     	copiesDAO.updateBookCopies(copies);
     }
 }
