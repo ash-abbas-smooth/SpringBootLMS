@@ -1,4 +1,4 @@
-package com.smoothstack.avalance.lms.entity;
+package com.smoothstack.avalanche.entity;
 
 import java.sql.Date;
 

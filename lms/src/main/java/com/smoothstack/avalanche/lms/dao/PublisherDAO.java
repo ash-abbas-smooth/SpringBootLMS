@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
-import com.smoothstack.avalance.lms.entity.Publisher;
+import com.smoothstack.avalanche.entity.Publisher;
 
 public class PublisherDAO extends BaseDAO<Publisher> implements ResultSetExtractor<List<Publisher>>
 {
