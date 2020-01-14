@@ -1,10 +1,10 @@
-package com.smoothstack.avalanche.lmsspringboot;
+package com.smoothstack.avalanche.lms;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class LibrarianApplicationTests {
+class LmsApplicationTests {
 
 	@Test
 	void contextLoads() {

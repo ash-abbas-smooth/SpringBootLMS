@@ -1,13 +1,13 @@
-package com.smoothstack.avalanche.lmsspringboot;
+package com.smoothstack.avalanche.lms;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class LibrarianApplication {
+public class LmsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(LibrarianApplication.class, args);
+		SpringApplication.run(LmsApplication.class, args);
 	}
 
 }
