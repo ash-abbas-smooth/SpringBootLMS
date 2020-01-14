@@ -24,24 +24,37 @@ public class BorrowerSVC {
 	
 	@Autowired
 	private BranchDAO branchDAO;
-
-	public List<Branch> readBranches() throws ClassNotFoundException, SQLException {
-		return branchDAO.readBranches();
-	}
 	
-	public List<Book> readBooksByBranch() throws ClassNotFoundException, SQLException {
-		return bookDAO.readBooksByBranch();
-	}
+	@Autowired
+	private BookCopiesDAO copiesDAO;
 	
+	/*
+	 * Functions for returning a book
+	 */
 	public List<Loan> readLoansByCardNo(int cardNo) throws ClassNotFoundException, SQLException {
 		return loansDAO.readLoansByCardNo(cardNo);
 	}
 	
-	public void createLoan(Loan loan) throws ClassNotFoundException, SQLException {
-	    loansDAO.createLoan(loan);
-	}
-	
 	public void updateLoan(Loan loan) throws ClassNotFoundException, SQLException {
 		loansDAO.updateLoan(loan);
+	}
+	
+	/*
+	 * Functions for checking out a book
+	 */
+	public List<Branch> readBranches() throws ClassNotFoundException, SQLException {
+		return branchDAO.readBranches();
+	}
+	
+	public List<Copies> readBookCopiesByBranch() throws ClassNotFoundException, SQLException {
+		return copiesDAO.readBookCopiesByBranch();
+	}
+	
+    public void updateBookCopies(Copies copies) throws ClassNotFoundException, SQLException {
+    	copiesDAO.updateBookCopies(copies);
+    }
+	
+	public void createLoan(Loan loan) throws ClassNotFoundException, SQLException {
+	    loansDAO.createLoan(loan);
 	}
 }
