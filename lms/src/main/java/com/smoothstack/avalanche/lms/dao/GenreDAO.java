@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
-import com.smoothstack.avalance.lms.entity.Genre;
+import com.smoothstack.avalanche.entity.Genre;
 
 public class GenreDAO extends BaseDAO<Genre> implements ResultSetExtractor<List<Genre>>
 {

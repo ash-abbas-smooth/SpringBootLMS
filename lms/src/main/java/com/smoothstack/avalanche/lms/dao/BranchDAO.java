@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
-import com.smoothstack.avalance.lms.entity.Branch;
+import com.smoothstack.avalanche.entity.Branch;
 
 public class BranchDAO extends BaseDAO<Branch> implements ResultSetExtractor<List<Branch>>
 {

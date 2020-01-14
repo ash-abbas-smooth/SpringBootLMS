@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
-import com.smoothstack.avalance.lms.entity.BookCopies;
+import com.smoothstack.avalanche.entity.BookCopies;
 
 public class BookCopiesDAO extends BaseDAO<BookCopies> implements ResultSetExtractor<List<BookCopies>>
 {

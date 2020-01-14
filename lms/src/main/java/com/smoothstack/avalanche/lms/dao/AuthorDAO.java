@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
-import com.smoothstack.avalance.lms.entity.Author;
+import com.smoothstack.avalanche.entity.Author;
 
 public class AuthorDAO extends BaseDAO<Author> implements ResultSetExtractor<List<Author>>
 {
