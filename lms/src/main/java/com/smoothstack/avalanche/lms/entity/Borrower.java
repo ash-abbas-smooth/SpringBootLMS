@@ -1,4 +1,4 @@
-package com.smoothstack.avalanche.entity;
+package com.smoothstack.avalanche.lms.entity;
 
 import java.util.List;
 

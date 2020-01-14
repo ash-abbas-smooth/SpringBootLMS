@@ -10,15 +10,15 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
-import com.smoothstack.avalanche.entity.BookCopies;
+import com.smoothstack.avalanche.lms.entity.BookCopies;
 
 public class BookCopiesDAO extends BaseDAO<BookCopies> implements ResultSetExtractor<List<BookCopies>>
 {
-	public void saveBookCopies(BookCopies bc) throws ClassNotFoundException, SQLException
+	public void createBookCopies(BookCopies bc) throws ClassNotFoundException, SQLException
 	{
 		mySqlTemplate.update("INSERT INTO tbl_book_copies (bookId, branchId, noOfCopies) values (?)", new Object[] {bc.getBookId(),bc.getBranchId(),bc.getNoOfCopies()});
 	}
-	public Integer saveBookCopiesWithId(BookCopies bc) throws ClassNotFoundException, SQLException
+	public Integer createBookCopiesWithID(BookCopies bc) throws ClassNotFoundException, SQLException
 	{
 		//return saveWithId("INSERT INTO tbl_book_copies (bookId, branchId, noOfCopies) values (?)", new Object[] {bc.getBookId(),bc.getBranchId(),bc.getNoOfCopies()});
 		String sql = "INSERT INTO tbl_book_copies (bookId, branchId, noOfCopies) values (?,?,?)";
@@ -35,7 +35,7 @@ public class BookCopiesDAO extends BaseDAO<BookCopies> implements ResultSetExtra
 		return (Integer) keyHolder.getKey();
 	}
 	
-	public void editBookCopies(BookCopies bc) throws ClassNotFoundException, SQLException
+	public void updateBookCopies(BookCopies bc) throws ClassNotFoundException, SQLException
 	{
 		mySqlTemplate.update("UPDATE tbl_book_copies SET noOfCopies = ? WHERE bookId = ? && branchId = ?", new Object[] {bc.getNoOfCopies(), bc.getBookId(), bc.getBranchId()});
 	}

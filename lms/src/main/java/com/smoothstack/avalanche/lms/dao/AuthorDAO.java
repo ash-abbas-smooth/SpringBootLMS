@@ -10,12 +10,12 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
-import com.smoothstack.avalanche.entity.Author;
+import com.smoothstack.avalanche.lms.entity.Author;
 
 public class AuthorDAO extends BaseDAO<Author> implements ResultSetExtractor<List<Author>>
 {
 
-	public void saveAuthor(Author author) throws ClassNotFoundException, SQLException
+	public void createAuthor(Author author) throws ClassNotFoundException, SQLException
 	{
 		mySqlTemplate.update("INSERT INTO tbl_author (authorName) values (?)", new Object[] {author.getAuthorName()});
 	}
@@ -34,7 +34,7 @@ public class AuthorDAO extends BaseDAO<Author> implements ResultSetExtractor<Lis
 		return (Integer) keyHolder.getKey();
 	}
 	
-	public void editAuthor(Author author) throws ClassNotFoundException, SQLException
+	public void updateAuthor(Author author) throws ClassNotFoundException, SQLException
 	{
 		mySqlTemplate.update("UPDATE tbl_author SET authorName = ? WHERE authorId = ?", new Object[] {author.getAuthorName(), author.getAuthorId()});
 	}

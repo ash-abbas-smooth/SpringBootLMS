@@ -10,17 +10,17 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
-import com.smoothstack.avalanche.entity.Book;
+import com.smoothstack.avalanche.lms.entity.Book;
 
 public class BookDAO extends BaseDAO<Book> implements ResultSetExtractor<List<Book>>
 {
 
-	public void saveBook(Book book) throws ClassNotFoundException, SQLException
+	public void createBook(Book book) throws ClassNotFoundException, SQLException
 	{
 		mySqlTemplate.update("INSERT INTO tbl_book (title, pubId) values (?,?)", new Object[] {book.getTitle(), book.getPubId()});
 	}
 	
-	public Integer saveBookWithId(Book book) throws ClassNotFoundException, SQLException {
+	public Integer createBookWithID(Book book) throws ClassNotFoundException, SQLException {
 		String sql = "INSERT INTO tbl_book (title) values(?)";
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 
@@ -33,7 +33,7 @@ public class BookDAO extends BaseDAO<Book> implements ResultSetExtractor<List<Bo
 		return (Integer) keyHolder.getKey();
 	}
 	
-	public void editBook(Book book) throws ClassNotFoundException, SQLException
+	public void updateBook(Book book) throws ClassNotFoundException, SQLException
 	{
 		mySqlTemplate.update("UPDATE tbl_book SET title = ? WHERE bookId = ?", new Object[] {book.getTitle(), book.getBookId()});
 		mySqlTemplate.update("UPDATE tbl_book SET pubId = ? WHERE bookId = ?", new Object[] {book.getPubId(), book.getBookId()});
@@ -53,6 +53,7 @@ public class BookDAO extends BaseDAO<Book> implements ResultSetExtractor<List<Bo
 		searchString = "%"+searchString+"%";
 		return mySqlTemplate.query("SELECT * FROM tbl_book WHERE title LIKE ?", new Object[] { searchString }, this);
 	}
+	
 	
 	public void insertBookAuthors(Integer bookId, Integer authorId) throws ClassNotFoundException, SQLException
 	{

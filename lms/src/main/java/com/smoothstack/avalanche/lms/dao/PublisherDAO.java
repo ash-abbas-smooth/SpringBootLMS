@@ -10,16 +10,16 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
-import com.smoothstack.avalanche.entity.Publisher;
+import com.smoothstack.avalanche.lms.entity.Publisher;
 
 public class PublisherDAO extends BaseDAO<Publisher> implements ResultSetExtractor<List<Publisher>>
 {
-	public void savePublisher(Publisher p) throws SQLException, ClassNotFoundException
+	public void createPublisher(Publisher p) throws SQLException, ClassNotFoundException
 	{
 		mySqlTemplate.update("INSERT INTO tbl_publisher (publisherName, publisherAddress, publisherPhone) VALUES (?,?,?)",
 				new Object[] {p.getPublisherName(),p.getPublisherAddress(),p.getPublisherPhone()});
 	}
-	public Integer savePublisherWithId(Publisher p) throws SQLException, ClassNotFoundException
+	public Integer createPublisherWithID(Publisher p) throws SQLException, ClassNotFoundException
 	{
 		//return saveWithId("INSERT INTO tbl_publisher (publisherName, publisherAddress, publisherPhone) VALUES (?,?,?)",
 		//		new Object[] {p.getPublisherName(),p.getPublisherAddress(),p.getPublisherPhone()});
@@ -36,7 +36,7 @@ public class PublisherDAO extends BaseDAO<Publisher> implements ResultSetExtract
 
 		return (Integer) keyHolder.getKey();
 	}
-	public void editPublisher(Publisher p) throws SQLException, ClassNotFoundException
+	public void updatePublisher(Publisher p) throws SQLException, ClassNotFoundException
 	{
 		mySqlTemplate.update("UPDATE tbl_publisher SET publisherName = ? WHERE publisherId = ?", new Object[] {p.getPublisherName(),p.getPublisherId()});
 		mySqlTemplate.update("UPDATE tbl_publisher SET publisherAddress = ? WHERE publisherId = ?", new Object[] {p.getPublisherAddress(),p.getPublisherId()});

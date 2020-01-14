@@ -10,18 +10,18 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
-import com.smoothstack.avalanche.entity.BookLoans;
+import com.smoothstack.avalanche.lms.entity.BookLoans;
 
 public class BookLoansDAO extends BaseDAO<BookLoans> implements ResultSetExtractor<List<BookLoans>>
 {
-	public void saveBookLoans(BookLoans bl) throws ClassNotFoundException, SQLException
+	public void createBookLoan(BookLoans bl) throws ClassNotFoundException, SQLException
 	{
 		mySqlTemplate.update("INSERT INTO tbl_book_loans (bookId, branchId, cardNo, dateOut, dueDate, dateIn) values (?,?,?,?,?,?)", 
 				new Object[] {bl.getBookId(), bl.getBranchId(), bl.getCardNo(), bl.getDateOut(), bl.getDueDate(), bl.getDateIn()});
 	}
 
 	
-	public Integer saveBookLoansWithId(BookLoans bl) throws ClassNotFoundException, SQLException
+	public Integer createBookLoanWithID(BookLoans bl) throws ClassNotFoundException, SQLException
 	{
 		/*return saveWithId("INSERT INTO tbl_book_loans (bookId, branchId, cardNo, dateOut, dueDate, dateIn) values (?,?,?,?,?,?)", 
 				new Object[] {bl.getBookId(), bl.getBranchId(), bl.getCardNo(), bl.getDateOut(), bl.getDueDate(), bl.getDateIn()});
@@ -41,7 +41,7 @@ public class BookLoansDAO extends BaseDAO<BookLoans> implements ResultSetExtract
 		return (Integer) keyHolder.getKey();
 	}
 	
-	public void editBookLoans(BookLoans bl) throws ClassNotFoundException, SQLException
+	public void updateBookLoan(BookLoans bl) throws ClassNotFoundException, SQLException
 	{
 		mySqlTemplate.update("UPDATE tbl_book_loans SET dateDue = ? WHERE cardNo = ? && bookId = ? && branchId = ? && dateOut = ?",
 				new Object[] {bl.getDueDate(), bl.getCardNo(), bl.getBookId(), bl.getBranchId(), bl.getDateOut()});

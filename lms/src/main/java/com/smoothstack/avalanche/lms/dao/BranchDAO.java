@@ -10,16 +10,16 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
-import com.smoothstack.avalanche.entity.Branch;
+import com.smoothstack.avalanche.lms.entity.Branch;
 
 public class BranchDAO extends BaseDAO<Branch> implements ResultSetExtractor<List<Branch>>
 {
-	public void saveBranch(Branch branch) throws ClassNotFoundException, SQLException
+	public void createBranch(Branch branch) throws ClassNotFoundException, SQLException
 	{
 		mySqlTemplate.update("INSERT INTO tbl_library_branch (branchName, branchAddress) values (?,?)", new Object[] {branch.getBranchName(), branch.getAddress()});
 	}
 	
-	public Integer saveBranchWithId(Branch branch) throws ClassNotFoundException, SQLException
+	public Integer createBranchWithID(Branch branch) throws ClassNotFoundException, SQLException
 	{
 		//return saveWithId("INSERT INTO tbl_library_branch (branchName, branchAddress) values (?)", new Object[] {branch.getBranchName(),  branch.getAddress()});
 		String sql = "INSERT INTO tbl_library_branch (branchName, branchAddress) values (?)";
@@ -33,7 +33,7 @@ public class BranchDAO extends BaseDAO<Branch> implements ResultSetExtractor<Lis
 		}, keyHolder);
 		return (Integer) keyHolder.getKey();
 	}
-	public void editBranch(Branch branch) throws ClassNotFoundException, SQLException
+	public void updateBranch(Branch branch) throws ClassNotFoundException, SQLException
 	{
 		mySqlTemplate.update("UPDATE tbl_branch SET branchName = ? WHERE branchId = ?", new Object[] {branch.getBranchName(), branch.getBranchId()});
 		mySqlTemplate.update("UPDATE tbl_branch SET branchAddress = ? WHERE branchId = ?", new Object[] {branch.getAddress(), branch.getBranchId()});

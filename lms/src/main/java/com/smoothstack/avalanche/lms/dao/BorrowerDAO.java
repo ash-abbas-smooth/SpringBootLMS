@@ -10,16 +10,16 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
-import com.smoothstack.avalanche.entity.Borrower;
+import com.smoothstack.avalanche.lms.entity.Borrower;
 
 public class BorrowerDAO extends BaseDAO<Borrower> implements ResultSetExtractor<List<Borrower>>
 {
-	public void saveBorrower(Borrower borrower) throws ClassNotFoundException, SQLException
+	public void createBorrower(Borrower borrower) throws ClassNotFoundException, SQLException
 	{
 		mySqlTemplate.update("INSERT INTO tbl_borrower (name, address, phone) values (?,?,?)", new Object[] {borrower.getName(),borrower.getAddress(),borrower.getPhone()});
 	}
 	
-	public Integer saveBorrowerWithId(Borrower borrower) throws ClassNotFoundException, SQLException
+	public Integer createBorrowerWithID(Borrower borrower) throws ClassNotFoundException, SQLException
 	{
 		//return saveWithId("INSERT INTO tbl_borrower (name, address, phone) values (?,?,?)", new Object[] {borrower.getName(),borrower.getAddress(),borrower.getPhone()});
 		String sql = "INSERT INTO tbl_borrower (name, address, phone) values (?,?,?)";
@@ -34,7 +34,7 @@ public class BorrowerDAO extends BaseDAO<Borrower> implements ResultSetExtractor
 		}, keyHolder);
 		return (Integer) keyHolder.getKey();
 	}
-	public void editBorrower(Borrower borrower) throws ClassNotFoundException, SQLException
+	public void updateBorrower(Borrower borrower) throws ClassNotFoundException, SQLException
 	{
 		mySqlTemplate.update("UPDATE tbl_borrower SET name = ? WHERE cardNo = ?", new Object[] {borrower.getName(), borrower.getCardNo()});
 		mySqlTemplate.update("UPDATE tbl_borrower SET address = ? WHERE cardNo = ?", new Object[] {borrower.getAddress(), borrower.getCardNo()});

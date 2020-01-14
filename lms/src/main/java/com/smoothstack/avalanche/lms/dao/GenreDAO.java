@@ -10,17 +10,17 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
-import com.smoothstack.avalanche.entity.Genre;
+import com.smoothstack.avalanche.lms.entity.Genre;
 
 public class GenreDAO extends BaseDAO<Genre> implements ResultSetExtractor<List<Genre>>
 {
 
-	public void saveGenre(Genre genre) throws ClassNotFoundException, SQLException
+	public void createGenre(Genre genre) throws ClassNotFoundException, SQLException
 	{
 		mySqlTemplate.update("INSERT INTO tbl_genre (genre_name) values (?)", new Object[] {genre.getGenreName()});
 	}
 	
-	public Integer saveGenreWithId(Genre genre) throws ClassNotFoundException, SQLException
+	public Integer createGenreWithID(Genre genre) throws ClassNotFoundException, SQLException
 	{
 		//return saveWithId("INSERT INTO tbl_genre (genre_name) values (?)", new Object[] {genre.getGenreName()});
 		String sql = "INSERT INTO tbl_genre (genre_name) values (?)";
@@ -34,7 +34,7 @@ public class GenreDAO extends BaseDAO<Genre> implements ResultSetExtractor<List<
 		return (Integer) keyHolder.getKey();
 	}
 	
-	public void editGenre(Genre genre) throws ClassNotFoundException, SQLException
+	public void updateGenre(Genre genre) throws ClassNotFoundException, SQLException
 	{
 		mySqlTemplate.update("UPDATE tbl_genre SET genre_name = ? WHERE genre_id = ?", new Object[] {genre.getGenreName(), genre.getGenreId()});
 	}
