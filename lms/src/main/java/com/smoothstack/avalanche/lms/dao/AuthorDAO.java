@@ -21,6 +21,7 @@ public class AuthorDAO extends BaseDAO<Author> implements ResultSetExtractor<Lis
 	{
 		mySqlTemplate.update("INSERT INTO tbl_author (authorName) values (?)", new Object[] {author.getAuthorName()});
 	}
+	
 	public Integer saveAuthorWithId(Author author) throws ClassNotFoundException, SQLException
 	{
 		//("INSERT INTO tbl_author (authorName) values (?)", new Object[] {author.getAuthorName()});
@@ -35,36 +36,36 @@ public class AuthorDAO extends BaseDAO<Author> implements ResultSetExtractor<Lis
 
 		return (Integer) keyHolder.getKey();
 	}
-	
+
 	public void updateAuthor(Author author) throws ClassNotFoundException, SQLException
 	{
 		mySqlTemplate.update("UPDATE tbl_author SET authorName = ? WHERE authorId = ?", new Object[] {author.getAuthorName(), author.getAuthorId()});
 	}
-	
+
 	public void deleteAuthor(Author author) throws ClassNotFoundException, SQLException
 	{
 		mySqlTemplate.update("DELETE FROM tbl_author WHERE authorId = ?", new Object[] {author.getAuthorId()});
 	}
-	
+
 	public List<Author> readAuthors() throws ClassNotFoundException, SQLException
 	{
 		return mySqlTemplate.query("SELECT * FROM tbl_author", this);
 	}
-	
+
 	public List<Author> readAuthorsByAuthorName(String searchString) throws ClassNotFoundException, SQLException
 	{
 		searchString = "%"+searchString+"%";
 		return mySqlTemplate.query("SELECT * FROM tbl_author WHERE authorName LIKE ?", new Object[] { searchString }, this);
 	}
-	
+
 	public void insertBookAuthors(Integer bookId, Integer authorId) throws ClassNotFoundException, SQLException
 	{
 		mySqlTemplate.update("INSERT INTO tbl_book_authors (bookId, authorId) VALUES (?,?)", new Object[] {bookId, authorId});
 	}
-	
+
 	@Override
 	public List<Author> extractData(ResultSet rs) throws SQLException {
-		
+
 		List<Author> authors = new ArrayList<Author>();
 		while(rs.next())
 		{
@@ -77,5 +78,5 @@ public class AuthorDAO extends BaseDAO<Author> implements ResultSetExtractor<Lis
 	}
 
 
-	
+
 }
