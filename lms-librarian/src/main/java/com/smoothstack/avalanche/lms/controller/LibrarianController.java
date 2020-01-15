@@ -58,7 +58,7 @@ public class LibrarianController {
 		return response;
 	}
 
-	// [ 2 ] -- Update book copies at branch:
+	// [ 2 ] -- Update book copies at branch: {"bookId": 1, "branchId": 1, "noOfCopies": 15}
 	@RequestMapping(path = "/lms/librarian/bookcopies", method = RequestMethod.PUT )
 	public ResponseEntity<BookCopies> updateBookCopies( @RequestBody BookCopies bc ) throws ClassNotFoundException, SQLException
 	{

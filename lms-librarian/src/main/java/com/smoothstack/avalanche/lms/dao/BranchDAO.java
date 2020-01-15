@@ -21,14 +21,14 @@ public class BranchDAO extends BaseDAO<Branch> implements ResultSetExtractor<Lis
 	// [ 1 ] -- Create branch
 	public void createBranch(Branch branch) throws ClassNotFoundException, SQLException
 	{
-		mySqlTemplate.update("INSERT INTO tbl_library_branch (branchName, branchAddress) values (?,?)", new Object[] {branch.getBranchName(), branch.getBranchAddress()});
+		mySqlTemplate.update("INSERT INTO tbl_branch (branchName, branchAddress) values (?,?)", new Object[] {branch.getBranchName(), branch.getBranchAddress()});
 	}
 
 	// [ 2 ] -- Create branch with ID
 	public Integer createBranchWithID(Branch branch) throws ClassNotFoundException, SQLException
 	{
 
-		String sql = "INSERT INTO tbl_library_branch (branchName, branchAddress) values (?)";
+		String sql = "INSERT INTO tbl_branch (branchName, branchAddress) values (?)";
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 
 		mySqlTemplate.update(connection -> {
@@ -47,14 +47,14 @@ public class BranchDAO extends BaseDAO<Branch> implements ResultSetExtractor<Lis
 	// [ 1 ] -- Read all branches
 	public List<Branch> readBranches() throws ClassNotFoundException, SQLException
 	{
-		return mySqlTemplate.query("SELECT * FROM tbl_library_branch", this);
+		return mySqlTemplate.query("SELECT * FROM tbl_branch", this);
 	}
 
 	// [ 2 ] -- Read branch by name
 	public List<Branch> readBranchesByBranchName(String searchString) throws ClassNotFoundException, SQLException
 	{
 		searchString = "%"+searchString+"%";
-		return mySqlTemplate.query("SELECT * FROM tbl_library_branch WHERE branchName LIKE ?", new Object[] { searchString }, this);
+		return mySqlTemplate.query("SELECT * FROM tbl_branch WHERE branchName LIKE ?", new Object[] { searchString }, this);
 	}
 
 	/*****************************************************************************
@@ -75,7 +75,7 @@ public class BranchDAO extends BaseDAO<Branch> implements ResultSetExtractor<Lis
 	// [ 1 ] -- Delete branch
 	public void deleteBranch(Branch branch) throws ClassNotFoundException, SQLException
 	{
-		mySqlTemplate.update("DELETE FROM tbl_library_branch WHERE branchId = ?", new Object[] {branch.getBranchId()});
+		mySqlTemplate.update("DELETE FROM tbl_branch WHERE branchId = ?", new Object[] {branch.getBranchId()});
 	}
 
 	@Override
