@@ -19,7 +19,7 @@ import com.smoothstack.avalanche.lms.svc.BorrowerSVC;
 
 @RestController
 public class BorrowerController {
-	
+
 	@Autowired
 	BorrowerSVC BorrowerService;
 	/*
@@ -30,7 +30,7 @@ public class BorrowerController {
 	{
 		return BorrowerService.readLoansByCardNo(cardNo);
 	}
-	
+
 	@RequestMapping(path = "/lms/borrower/bookloan", method= RequestMethod.POST)
 	public ResponseEntity<BookLoans> createLoan(@RequestBody BookLoans loan) throws ClassNotFoundException, SQLException
 	{
@@ -38,13 +38,14 @@ public class BorrowerController {
 		ResponseEntity<BookLoans> response = new ResponseEntity<BookLoans>(HttpStatus.CREATED);
 		return response;
 	}
+	
 	@RequestMapping(path = "/lms/borrower/bookloans", method= RequestMethod.PUT)
 	public ResponseEntity<BookLoans> updateLoan(@RequestBody BookLoans loan) throws ClassNotFoundException, SQLException {
 		BorrowerService.updateLoan(loan);
 		ResponseEntity<BookLoans> response = new ResponseEntity<BookLoans>(HttpStatus.NO_CONTENT);
 		return response;
 	}
-	
+
 	/*
 	 * Function for Branches
 	 */
@@ -53,24 +54,24 @@ public class BorrowerController {
 	{
 		return BorrowerService.readBranches();
 	}
-	
+
 	/*
 	 * Function for Book Copies
 	 */
 	@RequestMapping(path = "/lms/borrower/bookcopy/{branchId}", method= RequestMethod.GET)
-	public List<BookCopies> readBookCopiesByBranch(@RequestBody int branchId) throws ClassNotFoundException, SQLException
+	public List<BookCopies> readBookCopiesByBranch(@PathVariable int branchId) throws ClassNotFoundException, SQLException
 	{
 		return BorrowerService.readBookCopiesByBranch(branchId);
 	}
-	
+
 	@RequestMapping(path = "/lms/borrower/bookcopy", method= RequestMethod.PUT)
 	public ResponseEntity<BookCopies> updateBookCopy(@RequestBody BookCopies bc) throws ClassNotFoundException, SQLException
 	{
 		BorrowerService.updateBookCopies(bc);
-		ResponseEntity<BookCopies> response = new ResponseEntity<BookCopies>(HttpStatus.NO_CONTENT); 
+		ResponseEntity<BookCopies> response = new ResponseEntity<BookCopies>(HttpStatus.NO_CONTENT);
 		return response;
 	}
 	/*
-	 * Function for 
+	 * Function for
 	 */
 }
