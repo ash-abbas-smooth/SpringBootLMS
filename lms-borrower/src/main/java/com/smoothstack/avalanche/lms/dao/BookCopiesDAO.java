@@ -9,11 +9,9 @@ import java.util.List;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
-import org.springframework.stereotype.Component;
 
 import com.smoothstack.avalanche.lms.entity.BookCopies;
 
-@Component
 public class BookCopiesDAO extends BaseDAO<BookCopies> implements ResultSetExtractor<List<BookCopies>>
 {
 	public void createBookCopies(BookCopies bc) throws ClassNotFoundException, SQLException
