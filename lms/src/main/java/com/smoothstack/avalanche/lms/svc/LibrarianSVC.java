@@ -13,10 +13,10 @@ import com.smoothstack.avalanche.lms.entity.Branch;
 
 @Service
 public class LibrarianSVC {
-	
-    @Autowired
+
+  @Autowired
 	private BranchDAO branchDAO;
-	
+
 	@Autowired
 	private BookCopiesDAO copiesDAO;
 
@@ -26,19 +26,19 @@ public class LibrarianSVC {
 	public List<Branch> readBranches() throws ClassNotFoundException, SQLException {
 		return branchDAO.readBranches();
 	}
-	
+
 	public void updateBranch(Branch branch) throws ClassNotFoundException, SQLException {
 		branchDAO.updateBranch(branch);
 	}
-	
+
 	/*
 	 * Book Copies Functions
 	 */
-	
+
 	public List<BookCopies> readBookCopiesByBranch(int branchID) throws ClassNotFoundException, SQLException {
 		return copiesDAO.readBookCopiesByBranch(branchID);
 	}
-	
+
     public void updateBookCopies(BookCopies copies) throws ClassNotFoundException, SQLException {
     	copiesDAO.updateBookCopies(copies);
     }
