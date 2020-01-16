@@ -1,6 +1,7 @@
 package com.smoothstack.avalanche.lmsorchs.controller;
 
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,8 +23,6 @@ import com.smoothstack.avalanche.lmsorchs.entity.Branch;
 import com.smoothstack.avalanche.lmsorchs.entity.Publisher;
 
 
-
-
 @RestController
 @RequestMapping("/lms")
 public class LmsOrchsController {
@@ -35,18 +34,18 @@ public class LmsOrchsController {
 	 Admin Functions
 	 ***********/
 	@RequestMapping(path = "/admin/book", method = RequestMethod.GET)
-	public String readBooksAdmin()
+	public Book[] readBooksAdmin()
 	{
-		ResponseEntity<Book> response = restTemplate.getForEntity("http://localhost:8081/lms/admin/book", Book.class);
-		return response.getBody().toString();
+		ResponseEntity<Book[]> response = restTemplate.getForEntity("http://localhost:8081/lms/admin/book", Book[].class);
+		return response.getBody();
 	}
 	
 	
 	@RequestMapping(path = "/admin/book", method= RequestMethod.POST)
 	public String createBookAdmin(@RequestBody Book book)
 	{
-		ResponseEntity<Book> response = restTemplate.postForEntity("http://localhost:8081/lms/admin/book", book, Book.class);
-		return response.getBody().toString();
+		restTemplate.postForEntity("http://localhost:8081/lms/admin/book", book, Book.class);
+		return "Book Created!";
 	}
 	
 	@RequestMapping(path = "/admin/book", method= RequestMethod.PUT)
@@ -66,18 +65,18 @@ public class LmsOrchsController {
 	}
 	
 	@RequestMapping(path = "/admin/author", method = RequestMethod.GET)
-	public String readAuthorsAdmin()
+	public Author[] readAuthorsAdmin()
 	{
-		ResponseEntity<Book> response = restTemplate.getForEntity("http://localhost:8081/lms/admin/author", Book.class);
-		return response.getBody().toString();
+		ResponseEntity<Author[]> response = restTemplate.getForEntity("http://localhost:8081/lms/admin/author", Author[].class);
+		return response.getBody();
 	}
 	
 	
 	@RequestMapping(path = "/admin/author", method= RequestMethod.POST)
 	public String createAuthorAdmin(@RequestBody Author author)
 	{
-		ResponseEntity<Book> response = restTemplate.postForEntity("http://localhost:8081/lms/admin/author", author, Book.class);
-		return response.getBody().toString();
+		restTemplate.postForEntity("http://localhost:8081/lms/admin/author", author, Book.class);
+		return "Book Created!";
 	}
 	
 	@RequestMapping(path = "/admin/author", method= RequestMethod.PUT)
@@ -97,17 +96,17 @@ public class LmsOrchsController {
 	}
 	
 	@RequestMapping(path = "/admin/publisher", method = RequestMethod.GET)
-	public String readPublishersAdmin()
+	public Publisher[] readPublishersAdmin()
 	{
-		ResponseEntity<Publisher> response = restTemplate.getForEntity("http://localhost:8081/lms/admin/publisher", Publisher.class);
-		return response.getBody().toString();
+		ResponseEntity<Publisher[]> response = restTemplate.getForEntity("http://localhost:8081/lms/admin/publisher", Publisher[].class);
+		return response.getBody();
 	}
 	
 	
 	@RequestMapping(path = "/admin/publisher", method= RequestMethod.POST)
 	public String createPublisherAdmin(@RequestBody Publisher publisher)
 	{
-		ResponseEntity<Publisher> response = restTemplate.postForEntity("http://localhost:8081/lms/admin/publisher", publisher, Publisher.class);
+		restTemplate.postForEntity("http://localhost:8081/lms/admin/publisher", publisher, Publisher.class);
 		return "Create Success!";
 	}
 	
@@ -128,18 +127,18 @@ public class LmsOrchsController {
 	}
 	
 	@RequestMapping(path = "/admin/branch", method = RequestMethod.GET)
-	public String readBranchesAdmin()
+	public Branch[] readBranchesAdmin()
 	{
-		ResponseEntity<Branch> response = restTemplate.getForEntity("http://localhost:8081/lms/admin/branch", Branch.class);
-		return response.getBody().toString();
+		ResponseEntity<Branch[]> response = restTemplate.getForEntity("http://localhost:8081/lms/admin/branch", Branch[].class);
+		return response.getBody();
 	}
 	
 	
 	@RequestMapping(path = "/admin/branch", method= RequestMethod.POST)
 	public String createBranchAdmin(@RequestBody Branch branch)
 	{
-		ResponseEntity<Branch> response = restTemplate.postForEntity("http://localhost:8081/lms/admin/branch", branch, Branch.class);
-		return response.getBody().toString();
+		restTemplate.postForEntity("http://localhost:8081/lms/admin/branch", branch, Branch.class);
+		return "Create Success!";
 	}
 	
 	@RequestMapping(path = "/admin/branch", method= RequestMethod.PUT)
@@ -159,18 +158,18 @@ public class LmsOrchsController {
 	}
 	
 	@RequestMapping(path = "/admin/borrower", method = RequestMethod.GET)
-	public String readBorrowersAdmin()
+	public Borrower[] readBorrowersAdmin()
 	{
-		ResponseEntity<Borrower> response = restTemplate.getForEntity("http://localhost:8081/lms/admin/borrower", Borrower.class);
-		return response.getBody().toString();
+		ResponseEntity<Borrower[]> response = restTemplate.getForEntity("http://localhost:8081/lms/admin/borrower", Borrower[].class);
+		return response.getBody();
 	}
 	
 	
 	@RequestMapping(path = "/admin/borrower", method= RequestMethod.POST)
 	public String createBorrowerAdmin(@RequestBody Borrower borrower)
 	{
-		ResponseEntity<Borrower> response = restTemplate.postForEntity("http://localhost:8081/lms/admin/borrower", borrower, Borrower.class);
-		return response.getBody().toString();
+		restTemplate.postForEntity("http://localhost:8081/lms/admin/borrower", borrower, Borrower.class);
+		return "Create Success!";
 	}
 	
 	@RequestMapping(path = "/admin/borrower", method= RequestMethod.PUT)
@@ -190,10 +189,10 @@ public class LmsOrchsController {
 	}
 	
 	@RequestMapping(path = "/admin/loan", method = RequestMethod.GET)
-	public String readBookLoanssAdmin()
+	public BookLoans[] readBookLoanssAdmin()
 	{
-		ResponseEntity<BookLoans> response = restTemplate.getForEntity("http://localhost:8081/lms/admin/loan", BookLoans.class);
-		return response.getBody().toString();
+		ResponseEntity<BookLoans[]> response = restTemplate.getForEntity("http://localhost:8081/lms/admin/loan", BookLoans[].class);
+		return response.getBody();
 	}
 
 	@RequestMapping(path = "/admin/loan", method= RequestMethod.PUT)
@@ -208,19 +207,19 @@ public class LmsOrchsController {
 	 ********************************************************/
 
 	@RequestMapping(path = "/librarian/branches", method = RequestMethod.GET)
-	public String readBranchesLibrarian()
+	public Branch[] readBranchesLibrarian()
 	{
-		ResponseEntity<Book> response = restTemplate.getForEntity("http://localhost:8082/lms/librarian/branches", Book.class);
-		return response.getBody().toString();
+		ResponseEntity<Branch[]> response = restTemplate.getForEntity("http://localhost:8082/lms/librarian/branches", Branch[].class);
+		return response.getBody();
 	}
 	
 	@RequestMapping( path = "/librarian/bookcopies/{branchId}", method = RequestMethod.GET )
-	public String readBookCopiesByBranchLibrarian( @PathVariable("branchId") int branchId )
+	public BookCopies[] readBookCopiesByBranchLibrarian( @PathVariable("branchId") int branchId )
 	{
 		Map<String, Integer> params =  new HashMap<String, Integer>();
 		params.put("branchId", branchId);
-		ResponseEntity<BookCopies> response = restTemplate.getForEntity("http://localhost:8082/lms/librarian/bookcopies/{branchId}", BookCopies.class, params);
-		return response.getBody().toString();
+		ResponseEntity<BookCopies[]> response = restTemplate.getForEntity("http://localhost:8082/lms/librarian/bookcopies/{branchId}", BookCopies[].class, params);
+		return response.getBody();
 	}
 	
 	@RequestMapping(path = "/librarian/branches", method= RequestMethod.PUT)
@@ -241,17 +240,17 @@ public class LmsOrchsController {
 	 * BORROWER FUNCTIONS
 	 */
 	@RequestMapping(path = "/borrower/bookloans/{cardNo}", method= RequestMethod.GET)
-	public String readLoansByCardNoBorrower(@PathVariable("cardNo") int cardNo)
+	public BookLoans[] readLoansByCardNoBorrower(@PathVariable("cardNo") int cardNo)
 	{
 		Map<String,Integer> params = new HashMap<String,Integer>();
 		params.put("cardNo", cardNo);
-		ResponseEntity<String> response = restTemplate.getForEntity("http://localhost:8083/lms/borrower/bookloans/{cardNo}", String.class, params);
-		return response.getBody().toString();
+		ResponseEntity<BookLoans[]> response = restTemplate.getForEntity("http://localhost:8083/lms/borrower/bookloans/{cardNo}", BookLoans[].class, params);
+		return response.getBody();
 	}
 	@RequestMapping(path = "/borrower/bookloans", method= RequestMethod.POST)
 	public String createLoanBorrower(@RequestBody BookLoans loans)
 	{
-		ResponseEntity<BookLoans> response =  restTemplate.postForEntity("http://localhost:8083/lms/borrower/bookloans", loans, BookLoans.class);
+		restTemplate.postForEntity("http://localhost:8083/lms/borrower/bookloans", loans, BookLoans.class);
 		return "Create Successful!";
 	}
 	
@@ -263,19 +262,19 @@ public class LmsOrchsController {
 	}
 	
 	@RequestMapping(path = "/borrower/branches", method = RequestMethod.GET)
-	public String readBranchesBorrower()
+	public Branch[] readBranchesBorrower()
 	{
-		ResponseEntity<Book> response = restTemplate.getForEntity("http://localhost:8083/lms/borrower/branches", Book.class);
-		return response.getBody().toString();
+		ResponseEntity<Branch[]> response = restTemplate.getForEntity("http://localhost:8083/lms/borrower/branches", Branch[].class);
+		return response.getBody();
 	}
 	
 	@RequestMapping( path = "/borrower/bookcopies/{branchId}", method = RequestMethod.GET )
-	public String readBookCopiesByBranchBorrower( @PathVariable("branchId") int branchId )
+	public BookCopies[] readBookCopiesByBranchBorrower( @PathVariable("branchId") int branchId )
 	{
 		Map<String, Integer> params =  new HashMap<String, Integer>();
 		params.put("branchId", branchId);
-		ResponseEntity<BookCopies> response = restTemplate.getForEntity("http://localhost:8083/lms/borrower/bookcopies/{branchId}", BookCopies.class, params);
-		return response.getBody().toString();
+		ResponseEntity<BookCopies[]> response = restTemplate.getForEntity("http://localhost:8083/lms/borrower/bookcopies/{branchId}", BookCopies[].class, params);
+		return response.getBody();
 	}
 	
 	@RequestMapping(path = "/borrower/bookcopies", method= RequestMethod.PUT)
