@@ -8,10 +8,10 @@
 		<version>2.2.2.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.smoothstack.avalanche.lms</groupId>
-	<artifactId>lmsorchs</artifactId>
+	<groupId>com.smoothstack.avalanche</groupId>
+	<artifactId>lms-orchs</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>lmsorchs</name>
+	<name>lms-orchs</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
