@@ -14,6 +14,7 @@ import com.smoothstack.avalanche.lms.dao.*;
 @Configuration
 public class LmsConfig {
 
+	/*
 	public final String driver = "com.mysql.cj.jdbc.Driver";
 	public final String url = "jdbc:mysql://localhost:3306/library?useSSL=false&allowPublicKeyRetrieval=true";
 	public final String username = "root";
@@ -40,13 +41,13 @@ public class LmsConfig {
 		ds.setPassword(password);
 		return ds;
 	}
-
+	
 	@Bean
 	@Qualifier(value="mySqlTemplate")
 	public JdbcTemplate jdbcTemplate(){
 		return new JdbcTemplate(dataSource());
 	}
-
+*/
 	@Bean
 	public AuthorDAO adao(){
 		return new AuthorDAO();
@@ -77,9 +78,10 @@ public class LmsConfig {
 	public BranchDAO brdao(){
 		return new BranchDAO();
 	}
-
+/*
 	@Bean
 	public DataSourceTransactionManager txManager(){
 		return new DataSourceTransactionManager(dataSource());
 	}
+	*/
 }
