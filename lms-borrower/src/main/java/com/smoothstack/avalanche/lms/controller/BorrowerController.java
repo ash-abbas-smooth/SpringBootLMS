@@ -4,7 +4,10 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,15 +35,15 @@ public class BorrowerController {
 	{
 		return BorrowerService.readLoansByCardNo(cardNo);
 	}
-//
-//	@RequestMapping(path = "/lms/borrower/bookloans", method= RequestMethod.POST)
-//	public ResponseEntity<BookLoans> createLoan(@RequestBody BookLoans loan) throws ClassNotFoundException, SQLException
-//	{
-//		BorrowerService.createLoan(loan);
-//		ResponseEntity<BookLoans> response = new ResponseEntity<BookLoans>(HttpStatus.CREATED);
-//		return response;
-//	}
-//	
+
+	@RequestMapping(path = "/lms/borrower/bookloans", method= RequestMethod.POST)
+	public ResponseEntity<BookLoans> createLoan(@RequestBody BookLoans loan) throws ClassNotFoundException, SQLException
+	{
+		BorrowerService.createLoan(loan);
+		ResponseEntity<BookLoans> response = new ResponseEntity<BookLoans>(HttpStatus.CREATED);
+		return response;
+	}
+	
 //	@RequestMapping(path = "/lms/borrower/bookloans", method= RequestMethod.PUT)
 //	public ResponseEntity<BookLoans> updateLoan(@RequestBody BookLoans loan) throws ClassNotFoundException, SQLException {
 //		BorrowerService.updateDueDate(loan);

@@ -1,8 +1,10 @@
 package com.smoothstack.avalanche.lms.dao;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -15,18 +17,22 @@ public interface BookLoansDAO extends JpaRepository<BookLoans ,Long>{
 	@Query("SELECT bookloans FROM BookLoans bookloans WHERE bookloans.id.cardNo = :cardNum")
 	List<BookLoans> findByCardNo(@Param("cardNum") int cardNo);
 	
-//	@Query("UPDATE BookLoans bookloans "
-//			+ "SET bookloans.dueDate = :dueDate"
-//			+ "WHERE bookloans.bookId = :#{#id.bookId} AND bookloans.cardNo = :#{#id.cardNo} AND bookloans.branchId = :#{#id.branchId}")
-//	void updateDueDate(@Param("dueDate") Date date, @Param("id") BookLoansId id);
-//	
-//	@Query("UPDATE BookLoans bookloans "
-//			+ "SET bookloans.dateIn = :dateIn"
-//			+ "WHERE bookloans.bookId = :#{#id.bookId} AND bookloans.cardNo = :#{#id.cardNo} AND bookloans.branchId = :#{#id.branchId}")
-//	void updateDateIn(@Param("dateIn") Date date, @Param("id") BookLoansId id);
-//	
-//	@Query("INSERT INTO Bookloans bookloans (bookloans.bookId, bookloans.cardNo, bookloans.branchId, bookloans.dateOut, bookloans.dueDate, bookloans.dateIn)"
-//			+ "VALUES (:#{#loan.bookId}, :#{#loan.cardNo}, :#{#loan.branchId}, :#{#loan.dateOut}, :#{#loan.dueDate}, :#{#loan.dateIn}")
-//	void createBookLoan(@Param("loan") BookLoans loan);
+	@Modifying
+	@Query("UPDATE BookLoans bookloans "
+			+ "SET bookloans.dueDate = :dueDate"
+			+ " WHERE bookloans.id.bookId = :bkid AND bookloans.id.cardNo = :cn AND bookloans.id.branchId = :brid")
+	void updateDueDate(@Param("dueDate") Date date, @Param("bkid") int bkid, @Param("cn") int cardNo, @Param("brid") int brid);
+	
+	@Modifying
+	@Query("UPDATE BookLoans bookloans "
+			+ "SET bookloans.dateIn = :dateIn"
+			+ " WHERE bookloans.id.bookId = :bkid AND bookloans.id.cardNo = :cn AND bookloans.id.branchId = :brid")
+	void updateDateIn(@Param("dateIn") Date date, @Param("bkid") int bkid, @Param("cn") int cardNo, @Param("brid") int brid);
+	
+	@Modifying
+	@Query(value = "INSERT INTO tbl_book_loans (book_id, card_no, branch_id, date_out, due_date) "
+			+ "VALUES (:bkid, :cn, :brid, :do, :dd)",
+			nativeQuery = true)
+	void createBookLoan(@Param("bkid") int bkid, @Param("cn") int cardNo, @Param("brid") int branchId, @Param("do") Date dateOut, @Param("dd") Date dueDate);
 	
 }
