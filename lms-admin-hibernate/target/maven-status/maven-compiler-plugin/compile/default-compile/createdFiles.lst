@@ -1,0 +1,13 @@
+com\smoothstack\avalanche\lms\entity\Author.class
+com\smoothstack\avalanche\lms\dao\BorrowerDAO.class
+com\smoothstack\avalanche\lms\entity\Publisher.class
+com\smoothstack\avalanche\lms\dao\AuthorDAO.class
+com\smoothstack\avalanche\lms\entity\Branch.class
+com\smoothstack\avalanche\lms\dao\BookDAO.class
+com\smoothstack\avalanche\lms\service\AdminSVC.class
+com\smoothstack\avalanche\lms\dao\PublisherDAO.class
+com\smoothstack\avalanche\lms\controller\AdminController.class
+com\smoothstack\avalanche\lms\entity\Book.class
+com\smoothstack\avalanche\lms\entity\Borrower.class
+com\smoothstack\avalanche\lms\dao\BranchDAO.class
+com\smoothstack\avalanche\lms\LmsAdminAppApplication.class
