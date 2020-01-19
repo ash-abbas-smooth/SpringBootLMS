@@ -31,7 +31,7 @@ public class BorrowerController {
 		return BorrowerService.readLoansByCardNo(cardNo);
 	}
 
-	@RequestMapping(path = "/lms/borrower/bookloan", method= RequestMethod.POST)
+	@RequestMapping(path = "/lms/borrower/bookloans", method= RequestMethod.POST)
 	public ResponseEntity<BookLoans> createLoan(@RequestBody BookLoans loan) throws ClassNotFoundException, SQLException
 	{
 		BorrowerService.createLoan(loan);
@@ -49,7 +49,7 @@ public class BorrowerController {
 	/*
 	 * Function for Branches
 	 */
-	@RequestMapping(path ="/lms/borrower/branch", method= RequestMethod.GET)
+	@RequestMapping(path ="/lms/borrower/branches", method= RequestMethod.GET)
 	public List<Branch> readBranches() throws ClassNotFoundException, SQLException
 	{
 		return BorrowerService.readBranches();
@@ -58,13 +58,13 @@ public class BorrowerController {
 	/*
 	 * Function for Book Copies
 	 */
-	@RequestMapping(path = "/lms/borrower/bookcopy/{branchId}", method= RequestMethod.GET)
-	public List<BookCopies> readBookCopiesByBranch(@PathVariable int branchId) throws ClassNotFoundException, SQLException
+	@RequestMapping(path = "/lms/borrower/bookcopies/{branchId}", method= RequestMethod.GET)
+	public List<BookCopies> readBookCopiesByBranch(@PathVariable("branchId") int branchId) throws ClassNotFoundException, SQLException
 	{
 		return BorrowerService.readBookCopiesByBranch(branchId);
 	}
 
-	@RequestMapping(path = "/lms/borrower/bookcopy", method= RequestMethod.PUT)
+	@RequestMapping(path = "/lms/borrower/bookcopies", method= RequestMethod.PUT)
 	public ResponseEntity<BookCopies> updateBookCopy(@RequestBody BookCopies bc) throws ClassNotFoundException, SQLException
 	{
 		BorrowerService.updateBookCopies(bc);
