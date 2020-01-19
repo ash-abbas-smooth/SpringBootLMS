@@ -1,17 +1,23 @@
 package com.smoothstack.avalanche.lms.svc;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.smoothstack.avalanche.lms.dao.*;
-import com.smoothstack.avalanche.lms.entity.*;
+import com.smoothstack.avalanche.lms.dao.AuthorDAO;
+import com.smoothstack.avalanche.lms.dao.BookAuthorDAO;
+import com.smoothstack.avalanche.lms.dao.BookCopiesDAO;
+import com.smoothstack.avalanche.lms.dao.BookLoansDAO;
+import com.smoothstack.avalanche.lms.dao.BranchDAO;
+import com.smoothstack.avalanche.lms.entity.BookAuthor;
+import com.smoothstack.avalanche.lms.entity.BookLoans;
 
 @Service
-public class BorrowerSVC {
+public class BorrowerSVC{
 	
 	@Autowired
 	private BookLoansDAO loansDAO;
@@ -24,17 +30,33 @@ public class BorrowerSVC {
 	
 	@Autowired
 	private AuthorDAO authorDAO;
+	
+	@Autowired
+	private BookAuthorDAO badao;
+	
 	/*
 	 * Functions for returning a book
 	 */
+
+	public List<BookAuthor> readBA()
+	{
+		return badao.findAll();
+	}
+	@Transactional
 	public List<BookLoans> readLoansByCardNo(int cardNo) throws ClassNotFoundException, SQLException {
-		return loansDAO.readBookLoansByCardNo(cardNo);
+		return loansDAO.findByCardNo(cardNo);
 	}
 	
-	public void updateLoan(BookLoans loan) throws ClassNotFoundException, SQLException {
-		loansDAO.updateBookLoan(loan);
+	/*
+	public void updateDueDate(BookLoans loan) throws ClassNotFoundException, SQLException {
+		loansDAO.updateDueDate(loan.getDueDate(), loan.getId());
 	}
 	
+	public void updateDateIn(BookLoans loan)
+	{
+		loansDAO.updateDateIn(loan.getDateIn(), loan.getId());
+	}
+	*/
 	/*
 	 * Functions for returning a list of books based on author
 	 */
@@ -45,19 +67,20 @@ public class BorrowerSVC {
 	/*
 	 * Functions for checking out a book
 	 */
+	/*
 	public List<Branch> readBranches() throws ClassNotFoundException, SQLException {
-		return branchDAO.readBranches();
+		return branchDAO.findAll();
 	}
 	
 	public List<BookCopies> readBookCopiesByBranch(int branchID) throws ClassNotFoundException, SQLException {
-		return copiesDAO.readBookCopiesByBranch(branchID);
+		return copiesDAO.findBookCopiesByBranch(branchID);
 	}
 	
     public void updateBookCopies(BookCopies copies) throws ClassNotFoundException, SQLException {
-    	copiesDAO.updateBookCopies(copies);
+    	copiesDAO.updateBookCopies(copies.getNoOfCopies(), copies.getBookCopiesId());
     }
 	
 	public void createLoan(BookLoans loan) throws ClassNotFoundException, SQLException {
 	    loansDAO.createBookLoan(loan);
-	}
+	}*/
 }
