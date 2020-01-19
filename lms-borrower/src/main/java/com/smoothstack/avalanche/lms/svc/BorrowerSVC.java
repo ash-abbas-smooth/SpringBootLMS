@@ -44,19 +44,15 @@ public class BorrowerSVC{
 	{
 		return badao.findAll();
 	}
+	
 	@Transactional
 	public List<BookLoans> readLoansByCardNo(int cardNo) throws ClassNotFoundException, SQLException {
 		return loansDAO.findByCardNo(cardNo);
 	}
 	
 
-	public void updateDueDate(BookLoans loan) throws ClassNotFoundException, SQLException {
-		loansDAO.updateDueDate(loan.getDueDate(), loan.getId().getBookId(), loan.getId().getCardNo(), loan.getId().getBranchId());
-	}
-	
-	public void updateDateIn(BookLoans loan)
-	{
-		loansDAO.updateDateIn(loan.getDateIn(), loan.getId().getBookId(), loan.getId().getCardNo(), loan.getId().getBranchId());
+	public void updateBookLoans(BookLoans loan) throws ClassNotFoundException, SQLException {
+		loansDAO.save(loan);
 	}
 
 	/*
@@ -69,9 +65,9 @@ public class BorrowerSVC{
 	/*
 	 * Functions for checking out a book
 	 */
-//	public List<Branch> readBranches() throws ClassNotFoundException, SQLException {
-//		return branchDAO.findAll();
-//	}
+	public List<Branch> readBranches() throws ClassNotFoundException, SQLException {
+		return branchDAO.findAll();
+	}
 //	
 //	public List<BookCopies> readBookCopiesByBranch(int branchID) throws ClassNotFoundException, SQLException {
 //		return copiesDAO.findBookCopiesByBranch(branchID);
@@ -82,7 +78,6 @@ public class BorrowerSVC{
 //    }
 //	
 	public void createLoan(BookLoans loan) throws ClassNotFoundException, SQLException {
-	    loansDAO.createBookLoan(loan.getId().getBookId(), loan.getId().getCardNo(), loan.getId().getBranchId(),
-	    		loan.getDateOut(), loan.getDueDate());
+		loansDAO.save(loan);
 	}
 }

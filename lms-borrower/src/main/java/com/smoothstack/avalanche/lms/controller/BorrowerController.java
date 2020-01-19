@@ -6,10 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.smoothstack.avalanche.lms.entity.BookAuthor;
@@ -24,19 +24,19 @@ public class BorrowerController {
 	/*
 	 * Functions for BookLoans
 	 */
-	@RequestMapping(path = "lms/borrower/bookauthor", method = RequestMethod.GET)
+	@GetMapping(path = "lms/borrower/bookauthor")
 	public List<BookAuthor> readBA()
 	{
 		return BorrowerService.readBA();
 	}
 	
-	@RequestMapping(path = "/lms/borrower/bookloans/{cardNo}", method= RequestMethod.GET)
+	@GetMapping(path = "/lms/borrower/bookloans/{cardNo}")
 	public List<BookLoans> readLoansByCardNo(@PathVariable("cardNo") int cardNo) throws ClassNotFoundException, SQLException
 	{
 		return BorrowerService.readLoansByCardNo(cardNo);
 	}
 
-	@RequestMapping(path = "/lms/borrower/bookloans", method= RequestMethod.POST)
+	@PostMapping(path = "/lms/borrower/bookloans")
 	public ResponseEntity<BookLoans> createLoan(@RequestBody BookLoans loan) throws ClassNotFoundException, SQLException
 	{
 		BorrowerService.createLoan(loan);
