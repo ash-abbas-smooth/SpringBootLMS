@@ -4,22 +4,60 @@
 package com.smoothstack.avalanche.lms.entity;
 
 import java.util.List;
+import java.util.Objects;
 
-import org.springframework.stereotype.Component;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * @author Ashian
  *
  */
-@Component
+@Entity
+@Table (name = "tbl_book")
 public class Book 
 {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int bookId;
+	@Column(name = "title")
 	private String title;
-	private int pubId;
-	private List<Author> authors;
-	private List<Genre> genres;
 	
+//	@ManyToOne
+//	@JoinColumn(name = "pubId", referencedColumnName = "publisherId")
+//	private Publisher publisher;
+	
+	@ManyToMany(mappedBy ="books", cascade = CascadeType.ALL)
+	private List<Author> authors;
+	
+	@OneToMany(
+			mappedBy = "id.book",
+			cascade = CascadeType.ALL,
+			orphanRemoval = true
+			)
+	private List<BookCopies> bookCopies;
+//	
+	@OneToMany(mappedBy = "id.book", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<BookLoans> bookLoans;
+////	
+//	@OneToMany(
+//			mappedBy ="book",
+//			cascade = CascadeType.ALL,
+//			orphanRemoval = true
+//			)
+//	private List<BookGenre> genres;
+	
+	public Book() {}
+	/*
+	 * Getters / Setters
+	 */
 	public int getBookId() {
 		return bookId;
 	}
@@ -32,28 +70,45 @@ public class Book
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public int getPubId() {
-		return pubId;
-	}
-	public void setPubId(int pubId) {
-		this.pubId = pubId;
-	}
+//	public Publisher getPublisher() {
+//		return publisher;
+//	}
 	public List<Author> getAuthors() {
 		return authors;
 	}
 	public void setAuthors(List<Author> authors) {
 		this.authors = authors;
 	}
-	public List<Genre> getGenres() {
-		return genres;
-	}
-	public void setGenres(List<Genre> genres) {
-		this.genres = genres;
-	}
-	
+//	public List<BookCopies> getBookCopies() {
+//		return bookCopies;
+//	}
+//	public void setBookCopies(List<BookCopies> bookCopies) {
+//		this.bookCopies = bookCopies;
+//	}
+//	public List<BookLoans> getBookLoans() {
+//		return bookLoans;
+//	}
+//	public void setBookLoans(List<BookLoans> bookLoans) {
+//		this.bookLoans = bookLoans;
+//	}
+//	public void setPublisher(Publisher publisher) {
+//		this.publisher = publisher;
+//	}
+	/*
+	 * Equals / Hashcode
+	 */
 	@Override
-	public String toString()
+	public boolean equals(Object o)
 	{
-		return null;
+		if(this == o) return true;
+		if( o == null || getClass() != o.getClass()) return false;
+		Book other = (Book) o;
+		return Objects.equals(getTitle(), other.getTitle()); //&& Objects.equals(getAuthors(), other.getAuthors());
+				//&& Objects.equals(getPublisher(), other.getPublisher());
+	}
+	@Override
+	public int hashCode()
+	{
+		return Objects.hash(bookId, title);
 	}
 }

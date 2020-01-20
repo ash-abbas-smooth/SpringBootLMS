@@ -1,13 +1,37 @@
 package com.smoothstack.avalanche.lms.entity;
 
 import java.util.List;
+import java.util.Objects;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tbl_genre")
 public class Genre 
 {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int genreId;
-	private String genreName;
-	private List<Book> books;
 	
+	@Column(name = "genre_name")
+	private String genreName;
+	
+	@OneToMany(
+			mappedBy = "genre",
+			cascade = CascadeType.ALL,
+			orphanRemoval = true)
+	private List<BookGenre> books;
+	
+	/*
+	 * GETTERS/SETTERS
+	 */
 	public int getGenreId() {
 		return genreId;
 	}
@@ -20,11 +44,27 @@ public class Genre
 	public void setGenreName(String genreName) {
 		this.genreName = genreName;
 	}
-	public List<Book> getBooks() {
+	public List<BookGenre> getBooks() {
 		return books;
 	}
-	public void setBooks(List<Book> books) {
+	public void setBooks(List<BookGenre> books) {
 		this.books = books;
 	}
+	/*
+	 * EQUALS/HASH
+	 */
+	@Override
+	public int hashCode() {
+		return Objects.hash(genreName);
+	}
+	@Override
+	public boolean equals(Object o)
+	{
+		if(this == o) return true;
+		if(o == null || getClass() != o.getClass()) return false;
+		Genre other = (Genre) o;
+		return Objects.equals(getGenreName(), other.getGenreName());
+	}
+	
 	
 }
