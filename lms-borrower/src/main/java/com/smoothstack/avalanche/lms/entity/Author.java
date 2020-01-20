@@ -9,6 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.MapKey;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -23,7 +26,14 @@ public class Author
 	
 	@Column( name = "authorName")
 	private String authorName;
-		
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(
+			name = "tbl_book_authors",
+			joinColumns = { @JoinColumn(name = "authorId")},
+			inverseJoinColumns ={ @JoinColumn(name = "bookId")})
+	private List<Book> books;
+	
 	public Author() {}
 	public Author(String name)
 	{

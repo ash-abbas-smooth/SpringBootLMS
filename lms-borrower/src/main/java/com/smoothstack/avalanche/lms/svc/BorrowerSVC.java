@@ -9,11 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.smoothstack.avalanche.lms.dao.AuthorDAO;
-import com.smoothstack.avalanche.lms.dao.BookAuthorDAO;
 import com.smoothstack.avalanche.lms.dao.BookCopiesDAO;
 import com.smoothstack.avalanche.lms.dao.BookLoansDAO;
 import com.smoothstack.avalanche.lms.dao.BranchDAO;
-import com.smoothstack.avalanche.lms.entity.BookAuthor;
 import com.smoothstack.avalanche.lms.entity.BookCopies;
 import com.smoothstack.avalanche.lms.entity.BookLoans;
 import com.smoothstack.avalanche.lms.entity.Branch;
@@ -32,19 +30,10 @@ public class BorrowerSVC{
 	
 	@Autowired
 	private AuthorDAO authorDAO;
-	
-	@Autowired
-	private BookAuthorDAO badao;
-	
+
 	/*
 	 * Functions for returning a book
 	 */
-
-	public List<BookAuthor> readBA()
-	{
-		return badao.findAll();
-	}
-	
 	@Transactional
 	public List<BookLoans> readLoansByCardNo(int cardNo) throws ClassNotFoundException, SQLException {
 		return loansDAO.findByCardNo(cardNo);
@@ -68,15 +57,15 @@ public class BorrowerSVC{
 	public List<Branch> readBranches() throws ClassNotFoundException, SQLException {
 		return branchDAO.findAll();
 	}
-//	
-//	public List<BookCopies> readBookCopiesByBranch(int branchID) throws ClassNotFoundException, SQLException {
-//		return copiesDAO.findBookCopiesByBranch(branchID);
-//	}
-//	
-//    public void updateBookCopies(BookCopies copies) throws ClassNotFoundException, SQLException {
-//    	copiesDAO.updateBookCopies(copies.getNoOfCopies(), copies.getBookCopiesId());
-//    }
-//	
+
+	public List<BookCopies> readBookCopiesByBranch(int branchID) throws ClassNotFoundException, SQLException {
+		return copiesDAO.findBookCopiesByBranch(branchID);
+	}
+	
+    public void updateBookCopies(BookCopies copies) throws ClassNotFoundException, SQLException {
+    	copiesDAO.save(copies);
+    }
+
 	public void createLoan(BookLoans loan) throws ClassNotFoundException, SQLException {
 		loansDAO.save(loan);
 	}

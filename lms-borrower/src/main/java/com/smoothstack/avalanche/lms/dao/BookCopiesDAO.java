@@ -8,13 +8,12 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.smoothstack.avalanche.lms.entity.BookCopies;
-import com.smoothstack.avalanche.lms.entity.id.BookCopiesId;
 
 @Repository
 public interface BookCopiesDAO extends JpaRepository<BookCopies ,Long>{
 //
-//	@Query("SELECT bc FROM BookCopies bc WHERE bc.branchId = ?1")
-//	List<BookCopies> findBookCopiesByBranch(int branchId);
+	@Query("SELECT bc FROM BookCopies bc WHERE bc.id.branch.branchId = :bid")
+	List<BookCopies> findBookCopiesByBranch(@Param("bid") int branchId);
 //	
 //	@Query("UPDATE BookCopies bc "
 //			+ "SET bc.noOfCopies = :noOfCopies"

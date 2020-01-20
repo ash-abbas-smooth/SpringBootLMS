@@ -24,55 +24,27 @@ import com.smoothstack.avalanche.lms.entity.id.BookCopiesId;
 public class BookCopies {
 	
 	@EmbeddedId
-	private BookCopiesId bookCopiesId;
-	
-	@ManyToOne
-	@MapsId("bookId")
-	@JoinColumn(name = "bookId")
-	private Book book;
-	
-	@ManyToOne
-	@MapsId("branchId")
-	@JoinColumn(name = "branchId")
-	private Branch branch;
+	private BookCopiesId id;
 	
 	@Column(name ="noOfCopies")
 	private int noOfCopies;
 	
 	public BookCopies(BookCopiesId bookCopiesId, Book book, Branch branch, int noOfCopies) {
-		this.bookCopiesId = bookCopiesId;
-		this.book = book;
-		this.branch = branch;
+		this.id = bookCopiesId;
 		this.noOfCopies = noOfCopies;
 	}
 
+	public BookCopies() {}
 	/*
 	 * GETTERS / SETTERS
 	 */
 	public BookCopiesId getBookCopiesId() {
-		return bookCopiesId;
+		return id;
 	}
 
 	public void setBookCopiesId(BookCopiesId bookCopiesId) {
-		this.bookCopiesId = bookCopiesId;
+		this.id = bookCopiesId;
 	}
-
-	public Book getBook() {
-		return book;
-	}
-
-	public void setBook(Book book) {
-		this.book = book;
-	}
-
-	public Branch getBranch() {
-		return branch;
-	}
-
-	public void setBranch(Branch branch) {
-		this.branch = branch;
-	}
-
 	public int getNoOfCopies() {
 		return noOfCopies;
 	}
@@ -86,7 +58,7 @@ public class BookCopies {
 	 */
 	@Override
 	public int hashCode() {
-		return Objects.hash(book, branch);
+		return Objects.hash(id, noOfCopies);
 	}
 
 	@Override
@@ -94,7 +66,7 @@ public class BookCopies {
 		if(this == o) return true;
 		if(o == null || getClass() != o.getClass()) return false;
 		BookCopies other = (BookCopies) o;
-		return Objects.equals(getBook(), other.getBook()) && Objects.equals(getBranch(), other.getBranch());
+		return Objects.equals(getBookCopiesId(), other.getBookCopiesId()) && Objects.equals(getNoOfCopies(), other.getNoOfCopies());
 	}
 
 	

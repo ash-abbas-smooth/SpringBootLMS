@@ -29,13 +29,9 @@ public class Borrower {
 	@Column(name = "phone")
 	private String phone;
 	
-//	@OneToMany(
-//			mappedBy = "borrower",
-//			cascade = CascadeType.ALL,
-//			orphanRemoval = true
-//			)
-//	private List<BookLoans> loans;
-//	
+	@OneToMany(mappedBy = "id.borrower", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<BookLoans> loans;
+
 	/*
 	 * GETTERS/SETTERS
 	 */

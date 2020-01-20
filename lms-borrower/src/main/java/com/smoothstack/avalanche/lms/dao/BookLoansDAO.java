@@ -14,7 +14,8 @@ import com.smoothstack.avalanche.lms.entity.BookLoans;
 @Repository
 public interface BookLoansDAO extends JpaRepository<BookLoans ,Long>{
 
-	@Query("SELECT bookloans FROM BookLoans bookloans WHERE bookloans.id.cardNo = :cardNum")
+	@Query("SELECT bookloans FROM BookLoans bookloans WHERE bookloans.id.borrower.cardNo = :cardNum")
 	List<BookLoans> findByCardNo(@Param("cardNum") int cardNo);
+	
 	
 }

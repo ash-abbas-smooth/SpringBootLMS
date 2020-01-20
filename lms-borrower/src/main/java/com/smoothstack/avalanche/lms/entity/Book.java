@@ -12,7 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.MapKey;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -34,28 +34,19 @@ public class Book
 //	@JoinColumn(name = "pubId", referencedColumnName = "publisherId")
 //	private Publisher publisher;
 	
-//	@OneToMany(
-//			mappedBy ="book",
-//			//cascade = CascadeType.ALL,
-//			orphanRemoval = true)
-//	@MapKey(name="bookId")
-//	private List<BookAuthor> authors;
+	@ManyToMany(mappedBy ="books", cascade = CascadeType.ALL)
+	private List<Author> authors;
 	
-//	@OneToMany(
-//			mappedBy = "book",
-//			cascade = CascadeType.ALL,
-//			orphanRemoval = true
-//			)
-//	private List<BookCopies> bookCopies;
+	@OneToMany(
+			mappedBy = "id.book",
+			cascade = CascadeType.ALL,
+			orphanRemoval = true
+			)
+	private List<BookCopies> bookCopies;
 //	
-//	@OneToMany(
-//			mappedBy ="book",
-//			cascade = CascadeType.ALL,
-//			orphanRemoval = true
-//			)
-//	@MapKey(name="bookId")
-//	private List<BookLoans> bookLoans;
-//	
+	@OneToMany(mappedBy = "id.book", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<BookLoans> bookLoans;
+////	
 //	@OneToMany(
 //			mappedBy ="book",
 //			cascade = CascadeType.ALL,
@@ -82,12 +73,12 @@ public class Book
 //	public Publisher getPublisher() {
 //		return publisher;
 //	}
-//	public List<BookAuthor> getAuthors() {
-//		return authors;
-//	}
-//	public void setAuthors(List<BookAuthor> authors) {
-//		this.authors = authors;
-//	}
+	public List<Author> getAuthors() {
+		return authors;
+	}
+	public void setAuthors(List<Author> authors) {
+		this.authors = authors;
+	}
 //	public List<BookCopies> getBookCopies() {
 //		return bookCopies;
 //	}
