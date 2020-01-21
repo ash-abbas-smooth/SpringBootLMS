@@ -30,7 +30,14 @@ public class BookLoans {
 	@Column(name = "dateIn")
 	private Date dateIn;
 	
-	
+	public BookLoans() {}
+	public BookLoans(BookLoansId id, Date dateOut, Date dueDate, Date dateIn) {
+		super();
+		this.id = id;
+		this.dateOut = dateOut;
+		this.dueDate = dueDate;
+		this.dateIn = dateIn;
+	}
 	/*
 	 * Getters / Setters
 	 */

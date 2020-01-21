@@ -35,8 +35,9 @@ public class Author
 	private List<Book> books;
 	
 	public Author() {}
-	public Author(String name)
+	public Author(int authorId, String name)
 	{
+		this.authorId = authorId;
 		this.authorName = name;
 	}
 	/*

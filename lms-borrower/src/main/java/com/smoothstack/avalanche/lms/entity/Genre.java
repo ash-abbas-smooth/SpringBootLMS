@@ -23,12 +23,14 @@ public class Genre
 	@Column(name = "genre_name")
 	private String genreName;
 	
-	@OneToMany(
-			mappedBy = "genre",
-			cascade = CascadeType.ALL,
-			orphanRemoval = true)
-	private List<BookGenre> books;
 	
+	public Genre() {}
+	
+	public Genre(int genreId, String genreName) {
+		super();
+		this.genreId = genreId;
+		this.genreName = genreName;
+	}
 	/*
 	 * GETTERS/SETTERS
 	 */
@@ -44,12 +46,7 @@ public class Genre
 	public void setGenreName(String genreName) {
 		this.genreName = genreName;
 	}
-	public List<BookGenre> getBooks() {
-		return books;
-	}
-	public void setBooks(List<BookGenre> books) {
-		this.books = books;
-	}
+
 	/*
 	 * EQUALS/HASH
 	 */

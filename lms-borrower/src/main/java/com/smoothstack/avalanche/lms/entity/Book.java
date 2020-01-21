@@ -55,6 +55,16 @@ public class Book
 //	private List<BookGenre> genres;
 	
 	public Book() {}
+	
+	public Book(int bookId, String title, List<Author> authors, List<BookCopies> bookCopies, List<BookLoans> bookLoans) {
+	super();
+	this.bookId = bookId;
+	this.title = title;
+	this.authors = authors;
+	this.bookCopies = bookCopies;
+	this.bookLoans = bookLoans;
+}
+
 	/*
 	 * Getters / Setters
 	 */

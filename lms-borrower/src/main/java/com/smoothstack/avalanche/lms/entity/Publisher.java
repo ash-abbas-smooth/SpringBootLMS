@@ -26,6 +26,14 @@ public class Publisher {
 	@Column(name = "publisherPhone")
 	private String publisherPhone;
 	
+	public Publisher() {}
+	public Publisher(int publisherId, String publisherName, String publisherAddress, String publisherPhone) {
+		super();
+		this.publisherId = publisherId;
+		this.publisherName = publisherName;
+		this.publisherAddress = publisherAddress;
+		this.publisherPhone = publisherPhone;
+	}
 	/*
 	 * GETTERS / SETTERS
 	 */
