@@ -1,0 +1,16 @@
+C:\Users\jeffr\eclipse-workspace\lms-admin-hibernate\src\main\java\com\smoothstack\avalanche\lms\entity\Branch.java
+C:\Users\jeffr\eclipse-workspace\lms-admin-hibernate\src\main\java\com\smoothstack\avalanche\lms\dao\BookDAO.java
+C:\Users\jeffr\eclipse-workspace\lms-admin-hibernate\src\main\java\com\smoothstack\avalanche\lms\LmsAdminAppApplication.java
+C:\Users\jeffr\eclipse-workspace\lms-admin-hibernate\src\main\java\com\smoothstack\avalanche\lms\controller\AdminController.java
+C:\Users\jeffr\eclipse-workspace\lms-admin-hibernate\src\main\java\com\smoothstack\avalanche\lms\entity\Borrower.java
+C:\Users\jeffr\eclipse-workspace\lms-admin-hibernate\src\main\java\com\smoothstack\avalanche\lms\entity\Book.java
+C:\Users\jeffr\eclipse-workspace\lms-admin-hibernate\src\main\java\com\smoothstack\avalanche\lms\dao\BookLoansDAO.java
+C:\Users\jeffr\eclipse-workspace\lms-admin-hibernate\src\main\java\com\smoothstack\avalanche\lms\dao\BranchDAO.java
+C:\Users\jeffr\eclipse-workspace\lms-admin-hibernate\src\main\java\com\smoothstack\avalanche\lms\entity\BookLoanKey.java
+C:\Users\jeffr\eclipse-workspace\lms-admin-hibernate\src\main\java\com\smoothstack\avalanche\lms\service\AdminSVC.java
+C:\Users\jeffr\eclipse-workspace\lms-admin-hibernate\src\main\java\com\smoothstack\avalanche\lms\dao\BorrowerDAO.java
+C:\Users\jeffr\eclipse-workspace\lms-admin-hibernate\src\main\java\com\smoothstack\avalanche\lms\entity\BookLoans.java
+C:\Users\jeffr\eclipse-workspace\lms-admin-hibernate\src\main\java\com\smoothstack\avalanche\lms\dao\PublisherDAO.java
+C:\Users\jeffr\eclipse-workspace\lms-admin-hibernate\src\main\java\com\smoothstack\avalanche\lms\entity\Author.java
+C:\Users\jeffr\eclipse-workspace\lms-admin-hibernate\src\main\java\com\smoothstack\avalanche\lms\dao\AuthorDAO.java
+C:\Users\jeffr\eclipse-workspace\lms-admin-hibernate\src\main\java\com\smoothstack\avalanche\lms\entity\Publisher.java
