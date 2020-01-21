@@ -13,7 +13,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 import com.auth0.jwt.JWT;
@@ -24,9 +23,9 @@ import com.smoothstack.avalanche.lmsorchs.entity.User;
 public class JwtAuthorizationFilter extends BasicAuthenticationFilter{
 
 	private UserDAO udao;
-	public JwtAuthorizationFilter(AuthenticationManager authenticationManager,
-			AuthenticationEntryPoint authenticationEntryPoint, UserDAO udao) {
-		super(authenticationManager, authenticationEntryPoint);
+	
+	public JwtAuthorizationFilter(AuthenticationManager authenticationManager, UserDAO udao) {
+		super(authenticationManager);
 		this.udao = udao;
 	}
 	@Override
@@ -42,14 +41,16 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter{
 		
 		Authentication authentication = getUsernamePasswordAuthentication(request);
 		SecurityContextHolder.getContext().setAuthentication(authentication);
+	
+		chain.doFilter(request, response);
 	}
 	private Authentication getUsernamePasswordAuthentication(HttpServletRequest request) {
-		String token = request.getHeader(JwtProperties.HEADER_STRING);
+		String token = request.getHeader(JwtProperties.HEADER_STRING).replace(JwtProperties.TOKEN_PREFIX,"");
 		if( token != null)
 		{
 			String username = JWT.require(Algorithm.HMAC512(JwtProperties.SECRET.getBytes()))
 					.build()
-					.verify(token.replace(JwtProperties.TOKEN_PREFIX, ""))
+					.verify(token)
 					.getSubject();
 			
 			if(username != null)

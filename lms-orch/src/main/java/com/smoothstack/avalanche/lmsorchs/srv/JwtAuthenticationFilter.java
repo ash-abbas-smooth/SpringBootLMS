@@ -16,7 +16,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.auth0.jwt.JWT;
-import com.auth0.jwt.algorithms.Algorithm;
+import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.smoothstack.avalanche.lmsorchs.entity.LoginViewModel;
 
@@ -32,7 +32,10 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
 			throws AuthenticationException {
 		LoginViewModel credentials = null;
-		try {new ObjectMapper().readValue(request.getInputStream(), LoginViewModel.class);}
+		
+		try {
+			credentials = new ObjectMapper().readValue(request.getInputStream(), LoginViewModel.class);
+		}
 		catch(IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -52,7 +55,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		String token = JWT.create()
 				.withSubject(principal.getUsername())
 				.withExpiresAt(new Date(System.currentTimeMillis() + JwtProperties.EXPIRATION_TIME))
-				.sign(Algorithm.HMAC512(JwtProperties.SECRET.getBytes()));
+				.sign(HMAC512(JwtProperties.SECRET.getBytes()));
 		
 		response.addHeader(JwtProperties.HEADER_STRING, JwtProperties.TOKEN_PREFIX + token);
 		
