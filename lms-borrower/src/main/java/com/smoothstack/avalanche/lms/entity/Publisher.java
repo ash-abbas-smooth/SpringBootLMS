@@ -1,12 +1,15 @@
 package com.smoothstack.avalanche.lms.entity;
 
+import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -26,6 +29,17 @@ public class Publisher {
 	@Column(name = "publisherPhone")
 	private String publisherPhone;
 	
+	@OneToMany(mappedBy = "publisher", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Book> books;
+	
+	public Publisher() {}
+	public Publisher(int publisherId, String publisherName, String publisherAddress, String publisherPhone) {
+		super();
+		this.publisherId = publisherId;
+		this.publisherName = publisherName;
+		this.publisherAddress = publisherAddress;
+		this.publisherPhone = publisherPhone;
+	}
 	/*
 	 * GETTERS / SETTERS
 	 */

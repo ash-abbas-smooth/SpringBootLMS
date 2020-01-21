@@ -9,10 +9,13 @@ import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -30,31 +33,37 @@ public class Book
 	@Column(name = "title")
 	private String title;
 	
-//	@ManyToOne
-//	@JoinColumn(name = "pubId", referencedColumnName = "publisherId")
-//	private Publisher publisher;
-	
 	@ManyToMany(mappedBy ="books", cascade = CascadeType.ALL)
 	private List<Author> authors;
-	
+	@ManyToMany(mappedBy = "books", cascade = CascadeType.ALL)
+	private List<Genre> genres;
 	@OneToMany(
 			mappedBy = "id.book",
 			cascade = CascadeType.ALL,
 			orphanRemoval = true
 			)
 	private List<BookCopies> bookCopies;
-//	
+	
 	@OneToMany(mappedBy = "id.book", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<BookLoans> bookLoans;
-////	
-//	@OneToMany(
-//			mappedBy ="book",
-//			cascade = CascadeType.ALL,
-//			orphanRemoval = true
-//			)
-//	private List<BookGenre> genres;
+
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)	
+	@JoinColumn(name = "publisher_id", nullable = false)
+	private Publisher publisher;
 	
 	public Book() {}
+	
+	public Book(int bookId, String title, List<Author> authors, List<BookCopies> bookCopies, List<BookLoans> bookLoans, List<Genre> genres, Publisher publisher) {
+	super();
+	this.bookId = bookId;
+	this.title = title;
+	this.authors = authors;
+	this.bookCopies = bookCopies;
+	this.bookLoans = bookLoans;
+	this.genres = genres;
+	this.publisher = publisher;
+}
+
 	/*
 	 * Getters / Setters
 	 */
@@ -70,30 +79,28 @@ public class Book
 	public void setTitle(String title) {
 		this.title = title;
 	}
-//	public Publisher getPublisher() {
-//		return publisher;
-//	}
 	public List<Author> getAuthors() {
 		return authors;
 	}
 	public void setAuthors(List<Author> authors) {
 		this.authors = authors;
 	}
-//	public List<BookCopies> getBookCopies() {
-//		return bookCopies;
-//	}
-//	public void setBookCopies(List<BookCopies> bookCopies) {
-//		this.bookCopies = bookCopies;
-//	}
-//	public List<BookLoans> getBookLoans() {
-//		return bookLoans;
-//	}
-//	public void setBookLoans(List<BookLoans> bookLoans) {
-//		this.bookLoans = bookLoans;
-//	}
-//	public void setPublisher(Publisher publisher) {
-//		this.publisher = publisher;
-//	}
+	
+	public List<Genre> getGenres(){
+		return genres;
+	}
+	public void setGenres(List<Genre> genres) {
+		this.genres = genres;
+	}
+
+	public Publisher getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(Publisher publisher) {
+		this.publisher = publisher;
+	}
+
 	/*
 	 * Equals / Hashcode
 	 */

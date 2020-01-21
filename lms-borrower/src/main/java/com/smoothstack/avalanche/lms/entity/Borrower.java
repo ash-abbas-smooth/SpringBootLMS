@@ -32,6 +32,15 @@ public class Borrower {
 	@OneToMany(mappedBy = "id.borrower", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<BookLoans> loans;
 
+	public Borrower() {}
+	public Borrower(int cardNo, String name, String address, String phone, List<BookLoans> loans) {
+		super();
+		this.cardNo = cardNo;
+		this.name = name;
+		this.address = address;
+		this.phone = phone;
+		this.loans = loans;
+	}
 	/*
 	 * GETTERS/SETTERS
 	 */

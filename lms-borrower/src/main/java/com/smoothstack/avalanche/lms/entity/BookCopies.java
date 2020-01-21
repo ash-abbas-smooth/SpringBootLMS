@@ -35,14 +35,21 @@ public class BookCopies {
 	}
 
 	public BookCopies() {}
+	
+	public BookCopies(BookCopiesId id, int noOfCopies) {
+		super();
+		this.id = id;
+		this.noOfCopies = noOfCopies;
+	}
+
 	/*
 	 * GETTERS / SETTERS
 	 */
-	public BookCopiesId getBookCopiesId() {
+	public BookCopiesId getId() {
 		return id;
 	}
 
-	public void setBookCopiesId(BookCopiesId bookCopiesId) {
+	public void setId(BookCopiesId bookCopiesId) {
 		this.id = bookCopiesId;
 	}
 	public int getNoOfCopies() {
@@ -66,7 +73,7 @@ public class BookCopies {
 		if(this == o) return true;
 		if(o == null || getClass() != o.getClass()) return false;
 		BookCopies other = (BookCopies) o;
-		return Objects.equals(getBookCopiesId(), other.getBookCopiesId()) && Objects.equals(getNoOfCopies(), other.getNoOfCopies());
+		return Objects.equals(getId(), other.getId()) && Objects.equals(getNoOfCopies(), other.getNoOfCopies());
 	}
 
 	

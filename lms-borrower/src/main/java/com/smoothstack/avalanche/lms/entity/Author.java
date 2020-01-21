@@ -12,8 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.MapKey;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -35,8 +33,9 @@ public class Author
 	private List<Book> books;
 	
 	public Author() {}
-	public Author(String name)
+	public Author(int authorId, String name)
 	{
+		this.authorId = authorId;
 		this.authorName = name;
 	}
 	/*
