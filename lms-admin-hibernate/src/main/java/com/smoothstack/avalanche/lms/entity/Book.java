@@ -20,9 +20,8 @@ import com.smoothstack.avalanche.lms.entity.BookLoans;
 
 @Entity
 @Table(name = "tbl_book")
-public class Book implements Serializable{
+public class Book{
 	
-	private static final long serialVersionUID = 3107842821611579316L;
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,8 +43,16 @@ public class Book implements Serializable{
     /*
      * Equals and Hash-code
      */
-    
-    /*
+    public Book() {}
+    public Book(Integer bookId, String title, Set<Author> bookAuthors, Publisher publisher, List<BookLoans> loanBooks) {
+		super();
+		this.bookId = bookId;
+		this.title = title;
+		this.bookAuthors = bookAuthors;
+		this.publisher = publisher;
+		this.loanBooks = loanBooks;
+	}
+	/*
      * Getters and Setters
      */
 	public Integer getBookId() {

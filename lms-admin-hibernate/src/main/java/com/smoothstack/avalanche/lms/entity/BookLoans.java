@@ -10,9 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tbl_book_loans")
-public class BookLoans implements Serializable{
-    
-	private static final long serialVersionUID = 3489309016746704166L;
+public class BookLoans {
 
 	@EmbeddedId
 	private BookLoanKey bookLoanKey;
@@ -25,7 +23,18 @@ public class BookLoans implements Serializable{
     
     @Column(name = "dateIn")
 	private Date dateIn;
-    /*
+    
+    public BookLoans() {}
+    
+    public BookLoans(BookLoanKey bookLoanKey, Date dateOut, Date dueDate, Date dateIn) {
+		super();
+		this.bookLoanKey = bookLoanKey;
+		this.dateOut = dateOut;
+		this.dueDate = dueDate;
+		this.dateIn = dateIn;
+	}
+
+	/*
      * Equals and Hash-code
      */
     
