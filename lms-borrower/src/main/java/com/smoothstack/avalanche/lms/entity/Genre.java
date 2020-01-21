@@ -9,9 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,15 +20,9 @@ public class Genre
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int genreId;
 	
-	@Column(name = "genreName")
+	@Column(name = "genre_name")
 	private String genreName;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(
-			name = "tbl_book_genres",
-			joinColumns = { @JoinColumn(name = "genreId")},
-			inverseJoinColumns ={ @JoinColumn(name = "bookId")})
-	private List<Book> books;
 	
 	public Genre() {}
 	
