@@ -1,13 +1,47 @@
 package com.smoothstack.avalanche.lmsorchs.entity;
 
 import java.util.List;
+import java.util.Objects;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.MapKey;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tbl_author")
 public class Author 
 {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int authorId;
+	
+	@Column( name = "authorName")
 	private String authorName;
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(
+			name = "tbl_book_authors",
+			joinColumns = { @JoinColumn(name = "authorId")},
+			inverseJoinColumns ={ @JoinColumn(name = "bookId")})
 	private List<Book> books;
 	
+	public Author() {}
+	public Author(String name)
+	{
+		this.authorName = name;
+	}
+	/*
+	 * Getters / Setters
+	 */
 	public int getAuthorId() {
 		return authorId;
 	}
@@ -20,10 +54,23 @@ public class Author
 	public void setAuthorName(String authorName) {
 		this.authorName = authorName;
 	}
-	public List<Book> getBooks() {
-		return books;
+
+	/*
+	 * Equals/ HashCode
+	 */
+	@Override
+	public boolean equals(Object o)
+	{
+		if( this == o) return true;
+		if( o == null || getClass() != o.getClass())
+			return false;
+		Author other = (Author) o;
+		return Objects.equals(getAuthorName(), other.getAuthorName());
 	}
-	public void setBooks(List<Book> books) {
-		this.books = books;
+	
+	@Override
+	public int hashCode()
+	{
+		return Objects.hash(authorName);
 	}
 }

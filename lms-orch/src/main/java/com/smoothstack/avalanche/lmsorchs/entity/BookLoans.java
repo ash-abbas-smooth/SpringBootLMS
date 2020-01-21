@@ -1,31 +1,40 @@
 package com.smoothstack.avalanche.lmsorchs.entity;
 
 import java.sql.Date;
+import java.util.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import com.smoothstack.avalanche.lmsorchs.entity.id.BookLoansId;
+
+@Entity
+@Table(name = "tbl_book_loans")
 public class BookLoans {
-	private int bookId;
-	private int branchId;
-	private int cardNo;
+	
+	@EmbeddedId
+	private BookLoansId id;
+	
+	@Column(name ="dateOut")
 	private Date dateOut;
+	
+	@Column (name ="dueDate")
 	private Date dueDate;
 	
-	public int getBookId() {
-		return bookId;
+	@Column(name = "dateIn")
+	private Date dateIn;
+	
+	
+	/*
+	 * Getters / Setters
+	 */
+	public BookLoansId getId() {
+		return id;
 	}
-	public void setBookId(int bookId) {
-		this.bookId = bookId;
-	}
-	public int getBranchId() {
-		return branchId;
-	}
-	public void setBranchId(int branchId) {
-		this.branchId = branchId;
-	}
-	public int getCardNo() {
-		return cardNo;
-	}
-	public void setCardNo(int cardNo) {
-		this.cardNo = cardNo;
+	public void setId(BookLoansId id) {
+		this.id = id;
 	}
 	public Date getDateOut() {
 		return dateOut;
@@ -45,5 +54,24 @@ public class BookLoans {
 	public void setDateIn(Date dateIn) {
 		this.dateIn = dateIn;
 	}
-	private Date dateIn;
+
+	/*
+	 * Equals / Hash
+	 */
+	@Override
+	public boolean equals(Object o)
+	{
+		if(this == o) return true;
+		if(o == null || getClass() != o.getClass())
+			return false;
+		BookLoans that = (BookLoans) o;
+		return Objects.equals(getDateOut(), that.getDateOut()) 
+				&& Objects.equals(getDueDate(), that.getDueDate())
+				&& Objects.equals(getDateIn(), that.getDateIn());
+	}
+	@Override
+	public int hashCode()
+	{
+		return Objects.hash(dateOut, dueDate, dateIn);
+	}
 }
