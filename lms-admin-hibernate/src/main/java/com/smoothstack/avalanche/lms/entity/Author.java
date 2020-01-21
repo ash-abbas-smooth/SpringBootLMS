@@ -1,5 +1,6 @@
 package com.smoothstack.avalanche.lms.entity;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -15,7 +16,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tbl_author")
-public class Author{
+public class Author implements Serializable{
+	
+	private static final long serialVersionUID = 1861716531070193676L;
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,14 +35,7 @@ public class Author{
     		inverseJoinColumns = { @JoinColumn(name = "bookId") })
     private Set<Book> authorBooks;
 
-    public Author() {}
-    public Author(Integer authorId, String authorName, Set<Book> authorBooks) {
-		super();
-		this.authorId = authorId;
-		this.authorName = authorName;
-		this.authorBooks = authorBooks;
-	}
-	/*
+    /*
      * Equals and Hash-code
      */
     

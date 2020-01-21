@@ -12,7 +12,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tbl_publisher")
-public class Publisher {
+public class Publisher implements Serializable{
+
+	private static final long serialVersionUID = -7979284439869380039L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,16 +33,6 @@ public class Publisher {
 	@OneToMany(mappedBy = "publisher")
 	private Collection<Book> publisherBooks;	
 	
-	public Publisher() {}
-	public Publisher(Integer publisherId, String publisherName, String publisherAddress, String publisherPhone,
-			Collection<Book> publisherBooks) {
-		super();
-		this.publisherId = publisherId;
-		this.publisherName = publisherName;
-		this.publisherAddress = publisherAddress;
-		this.publisherPhone = publisherPhone;
-		this.publisherBooks = publisherBooks;
-	}
 	public Integer getPublisherId() {
 		return publisherId;
 	}

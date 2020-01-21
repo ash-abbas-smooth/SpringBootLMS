@@ -6,7 +6,9 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-public class BookLoanKey {
+public class BookLoanKey implements Serializable {
+
+	private static final long serialVersionUID = 3071037665384069914L;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "bookId", nullable = false)
@@ -19,15 +21,7 @@ public class BookLoanKey {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "cardNo", nullable = false)
 	private Borrower borrower;
-	
-	public BookLoanKey() {}
-    public BookLoanKey(Book book, Branch branch, Borrower borrower) {
-		super();
-		this.book = book;
-		this.branch = branch;
-		this.borrower = borrower;
-	}
-	/*
+    /*
      * Equals and Hash-code
      */
     

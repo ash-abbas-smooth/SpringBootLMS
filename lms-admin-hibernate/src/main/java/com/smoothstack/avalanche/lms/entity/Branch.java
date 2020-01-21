@@ -14,7 +14,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tbl_library_branch")
-public class Branch {
+public class Branch implements Serializable{
+	
+	private static final long serialVersionUID = 6073778377820089326L;
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,16 +29,8 @@ public class Branch {
 	@Column(name = "branchAddress")
 	private String address;
 	
-	public Branch() {}
-	public Branch(Integer branchId, String branchName, String address) {
-		super();
-		this.branchId = branchId;
-		this.branchName = branchName;
-		this.address = address;
-	}
 //	private List<BookCopies> bookCopies;
 //	private List<BookLoans> bookLoans;
-	
 	
 	public Integer getBranchId() {
 		return branchId;

@@ -13,7 +13,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tbl_borrower")
-public class Borrower {
+public class Borrower implements Serializable{
+
+	private static final long serialVersionUID = 4664483656490549923L;
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,17 +33,7 @@ public class Borrower {
 	
 	@OneToMany(mappedBy = "bookLoanKey.borrower")
 	private List<BookLoans> loanBooks;
-	
-	public Borrower() {}
-    public Borrower(Integer cardNo, String name, String address, String phone, List<BookLoans> loanBooks) {
-		super();
-		this.cardNo = cardNo;
-		this.name = name;
-		this.address = address;
-		this.phone = phone;
-		this.loanBooks = loanBooks;
-	}
-	/*
+    /*
      * Equals and Hash-code
      */
     
