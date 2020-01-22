@@ -250,17 +250,17 @@ public class LmsOrchsController {
 		ResponseEntity<BookLoans[]> response = restTemplate.getForEntity("http://localhost:8083/lms/borrower/bookloans/{cardNo}", BookLoans[].class, params);
 		return response.getBody();
 	}
-	@RequestMapping(path = "/borrower/bookloans", method= RequestMethod.POST)
+	@RequestMapping(path = "/borrower/bookloan", method= RequestMethod.POST)
 	public String createLoanBorrower(@RequestBody BookLoans loans)
 	{
-		restTemplate.postForEntity("http://localhost:8083/lms/borrower/bookloans", loans, BookLoans.class);
+		restTemplate.postForEntity("http://localhost:8083/lms/borrower/bookloan", loans, BookLoans.class);
 		return "Create Successful!";
 	}
 	
-	@RequestMapping(path = "/borrower/bookloans", method= RequestMethod.PUT)
+	@RequestMapping(path = "/borrower/bookloans:bookloans", method= RequestMethod.PUT)
 	public String updateLoanBorrower(@RequestBody BookLoans loans)
 	{
-		restTemplate.put("http://localhost:8083/lms/borrower/bookloans", loans);
+		restTemplate.put("http://localhost:8083/lms/borrower/bookloans:bookloans", loans);
 		return "Update Successful!";
 	}
 	
@@ -280,10 +280,10 @@ public class LmsOrchsController {
 		return response.getBody();
 	}
 	
-	@RequestMapping(path = "/borrower/bookcopies", method= RequestMethod.PUT)
+	@RequestMapping(path = "/borrower/bookcopies:bookcopies", method= RequestMethod.PUT)
 	public String updateBookCopiesBorrower(@RequestBody BookCopies bc)
 	{
-		restTemplate.put("http://localhost:8081/lms/librarian/bookCopies", bc);
+		restTemplate.put("http://localhost:8081/lms/librarian/bookcopies:bookcopies", bc);
 		return "Update Success!";
 	}
 	
