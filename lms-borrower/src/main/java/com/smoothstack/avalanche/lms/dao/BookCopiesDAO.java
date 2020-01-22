@@ -1,6 +1,7 @@
 package com.smoothstack.avalanche.lms.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -12,11 +13,11 @@ import com.smoothstack.avalanche.lms.entity.BookCopies;
 @Repository
 public interface BookCopiesDAO extends JpaRepository<BookCopies ,Long>{
 //
-	@Query("SELECT bc FROM BookCopies bc WHERE bc.id.branch.branchId = :bid")
-	List<BookCopies> findBookCopiesByBranch(@Param("bid") int branchId);
-//	
-//	@Query("UPDATE BookCopies bc "
-//			+ "SET bc.noOfCopies = :noOfCopies"
-//			+ "WHERE bc.bookId = :#{#id.bookId} AND bc.branchId = :#{#id.branchId}")
-//	void updateBookCopies(@Param("noOfCopies")int copies, @Param("id") BookCopiesId id);
+	@Query("SELECT bc FROM BookCopies bc WHERE bc.id.branch.branchId = :brid")
+	List<BookCopies> findBookCopiesByBranch(@Param("brid") int branchId);
+	
+	@Query("SELECT bc FROM BookCopies bc WHERE bc.id.book.bookId = :bid AND bc.id.branch.branchId = :brid")
+	Optional<BookCopies> findBookCopiesById(@Param("bid") int bookId, @Param("brid") int branchId);
+
+	
 }
