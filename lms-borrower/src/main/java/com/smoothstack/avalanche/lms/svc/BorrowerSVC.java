@@ -1,7 +1,9 @@
 package com.smoothstack.avalanche.lms.svc;
 
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -36,11 +38,13 @@ public class BorrowerSVC{
 	 */
 	@Transactional
 	public List<BookLoans> readLoansByCardNo(int cardNo) throws ClassNotFoundException, SQLException {
-		return loansDAO.findByCardNo(cardNo);
+		List<BookLoans> searchLoans = loansDAO.findByCardNo(cardNo);
+		return searchLoans == null? Collections.EMPTY_LIST : searchLoans;
 	}
 	
 
 	public void updateBookLoans(BookLoans loan) throws ClassNotFoundException, SQLException {
+		Optional<BookLoans> searchLoan = loansDAO.findByBookLoanId(loan.getId().getBorrower().getCardNo(), loan.getId().getBook().getBookId(), loan.getId().getBranch().getBranchId());
 		loansDAO.save(loan);
 	}
 
@@ -59,7 +63,8 @@ public class BorrowerSVC{
 	}
 
 	public List<BookCopies> readBookCopiesByBranch(int branchID) throws ClassNotFoundException, SQLException {
-		return copiesDAO.findBookCopiesByBranch(branchID);
+		List<BookCopies> searchCopies = copiesDAO.findBookCopiesByBranch(branchID);
+		return searchCopies == null? Collections.EMPTY_LIST : searchCopies;
 	}
 	
     public void updateBookCopies(BookCopies copies) throws ClassNotFoundException, SQLException {
