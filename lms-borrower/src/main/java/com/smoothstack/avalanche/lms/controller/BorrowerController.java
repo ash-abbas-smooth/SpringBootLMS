@@ -45,7 +45,14 @@ public class BorrowerController {
 	
 	@PutMapping(path = "/lms/borrower/bookloans:bookloans")
 	public ResponseEntity<BookLoans> updateLoan(@RequestBody BookLoans loan) throws ClassNotFoundException, SQLException {
-		BorrowerService.updateBookLoans(loan);
+		try{
+			BorrowerService.updateBookLoans(loan);
+		}
+		catch(IllegalArgumentException e)
+		{
+			ResponseEntity<BookLoans> resp = new ResponseEntity<BookLoans>(HttpStatus.NOT_FOUND);
+			return resp;
+		}
 		ResponseEntity<BookLoans> response = new ResponseEntity<BookLoans>(HttpStatus.NO_CONTENT);
 		return response;
 	}
@@ -71,7 +78,13 @@ public class BorrowerController {
 	@PutMapping(path = "/lms/borrower/bookcopies:bookcopies")
 	public ResponseEntity<BookCopies> updateBookCopy(@RequestBody BookCopies bc) throws ClassNotFoundException, SQLException
 	{
+		try {
 		BorrowerService.updateBookCopies(bc);
+		}
+		catch(IllegalArgumentException e)
+		{
+			ResponseEntity<BookCopies> resp = new ResponseEntity<BookCopies>(HttpStatus.NOT_ACCEPTABLE);
+		}
 		ResponseEntity<BookCopies> response = new ResponseEntity<BookCopies>(HttpStatus.NO_CONTENT);
 		return response;
 	}
