@@ -271,7 +271,7 @@ public class LmsOrchsController {
 		return response.getBody();
 	}
 	
-	@RequestMapping( path = "/borrower/bookcopies/{branchId}", method = RequestMethod.GET )
+	@RequestMapping( path = "/borrower/bookcopies/{branchId}", method = RequestMethod.GET)
 	public BookCopies[] readBookCopiesByBranchBorrower( @PathVariable("branchId") int branchId )
 	{
 		Map<String, Integer> params =  new HashMap<String, Integer>();
