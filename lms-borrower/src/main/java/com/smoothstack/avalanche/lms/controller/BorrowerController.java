@@ -33,7 +33,7 @@ public class BorrowerController {
 		return BorrowerService.readLoansByCardNo(cardNo);
 	}
 
-	@PostMapping(path = "/lms/borrower/bookloans")
+	@PostMapping(path = "/lms/borrower/bookloan")
 	public ResponseEntity<BookLoans> createLoan(@RequestBody BookLoans loan) throws ClassNotFoundException, SQLException
 	{
 		if(loan == null)
@@ -43,7 +43,7 @@ public class BorrowerController {
 		return response;
 	}
 	
-	@PutMapping(path = "/lms/borrower/bookloans")
+	@PutMapping(path = "/lms/borrower/bookloans:bookloans")
 	public ResponseEntity<BookLoans> updateLoan(@RequestBody BookLoans loan) throws ClassNotFoundException, SQLException {
 		BorrowerService.updateBookLoans(loan);
 		ResponseEntity<BookLoans> response = new ResponseEntity<BookLoans>(HttpStatus.NO_CONTENT);
@@ -68,7 +68,7 @@ public class BorrowerController {
 		return BorrowerService.readBookCopiesByBranch(branchId);
 	}
 
-	@PutMapping(path = "/lms/borrower/bookcopies")
+	@PutMapping(path = "/lms/borrower/bookcopies:bookcopies")
 	public ResponseEntity<BookCopies> updateBookCopy(@RequestBody BookCopies bc) throws ClassNotFoundException, SQLException
 	{
 		BorrowerService.updateBookCopies(bc);
