@@ -17,8 +17,8 @@ public interface BookLoansDAO extends JpaRepository<BookLoans , Long>{
 	List<BookLoans> findByCardNo(@Param("cardNum") int cardNo);
 	
 	@Query("SELECT bookloan FROM BookLoans bookloan "
-			+ "WHERE bookloan.id.borrower.cardNo = :cardNum && "
-			+ "bookloan.id.book.bookId = :bookId && "
+			+ "WHERE bookloan.id.borrower.cardNo = :cardNum AND "
+			+ "bookloan.id.book.bookId = :bookId AND "
 			+ "bookloan.id.branch.branchId = :branchId")
 	Optional<BookLoans> findByBookLoanId(@Param("cardNum") int cardNo, @Param("bookId") int bookId, @Param("branchId") int branchId);
 }

@@ -30,7 +30,8 @@ public class BorrowerController {
 	@GetMapping(path = "/lms/borrower/bookloans/{cardNo}")
 	public List<BookLoans> readLoansByCardNo(@PathVariable("cardNo") int cardNo) throws ClassNotFoundException, SQLException
 	{
-		return BorrowerService.readLoansByCardNo(cardNo);
+		List<BookLoans> searchLoans = BorrowerService.readLoansByCardNo(cardNo);
+		return searchLoans;
 	}
 
 	@PostMapping(path = "/lms/borrower/bookloan")
@@ -63,16 +64,18 @@ public class BorrowerController {
 	@GetMapping(path ="/lms/borrower/branches")
 	public List<Branch> readBranches() throws ClassNotFoundException, SQLException
 	{
-		return BorrowerService.readBranches();
+		List<Branch> searchBranches = BorrowerService.readBranches();
+		return searchBranches;
 	}
 
 	/*
 	 * Function for Book Copies
 	 */
 	@GetMapping(path = "/lms/borrower/bookcopies/{branchId}")
-	public List<BookCopies> readBookCopiesByBranch(@PathVariable("branchId") int branchId) throws ClassNotFoundException, SQLException
+	public List<BookCopies> readBookCopiesByBranch(@PathVariable("branchId") int branchId) throws ClassNotFoundException, IllegalArgumentException, SQLException
 	{
-		return BorrowerService.readBookCopiesByBranch(branchId);
+		List<BookCopies> searchBookCopies = BorrowerService.readBookCopiesByBranch(branchId);
+		return searchBookCopies;
 	}
 
 	@PutMapping(path = "/lms/borrower/bookcopies:bookcopies")
@@ -84,6 +87,7 @@ public class BorrowerController {
 		catch(IllegalArgumentException e)
 		{
 			ResponseEntity<BookCopies> resp = new ResponseEntity<BookCopies>(HttpStatus.NOT_ACCEPTABLE);
+			return resp;
 		}
 		ResponseEntity<BookCopies> response = new ResponseEntity<BookCopies>(HttpStatus.NO_CONTENT);
 		return response;
